@@ -11,27 +11,45 @@ declare(strict_types=1);
 
 namespace Brotkrueml\FormRateLimit\Domain\Finishers;
 
+use Brotkrueml\FormRateLimit\Guards\IntervalGuard;
+use Brotkrueml\FormRateLimit\Guards\LimitGuard;
+use Brotkrueml\FormRateLimit\Guards\PolicyGuard;
 use Symfony\Component\RateLimiter\LimiterInterface;
 use Symfony\Component\RateLimiter\RateLimiterFactory;
 use TYPO3\CMS\Core\RateLimiter\Storage\CachingFrameworkStorage;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Fluid\View\StandaloneView;
 use TYPO3\CMS\Form\Domain\Finishers\AbstractFinisher;
 
 final class RateLimitFinisher extends AbstractFinisher
 {
     private CachingFrameworkStorage $storage;
+    private IntervalGuard $intervalGuard;
+    private LimitGuard $limitGuard;
+    private PolicyGuard $policyGuard;
+    private string $interval;
+    private int $limit;
+    private string $policy;
 
     public function __construct(CachingFrameworkStorage $storage)
     {
         $this->storage = $storage;
+        $this->intervalGuard = new IntervalGuard();
+        $this->limitGuard = new LimitGuard();
+        $this->policyGuard = new PolicyGuard();
     }
 
     protected function executeInternal(): ?string
     {
+        $this->interval = $this->intervalGuard->guard($this->parseOption('interval'));
+        $this->limit = $this->limitGuard->guard($this->parseOption('limit'));
+        $this->policy = $this->policyGuard->guard($this->parseOption('policy'));
+
         $rateLimiter = $this->getRateLimiter();
         if (! $rateLimiter->consume()->isAccepted()) {
             $this->finisherContext->cancel();
 
-            return 'Rate limit exceeded!';
+            return $this->renderExceededMessage();
         }
 
         return null;
@@ -39,21 +57,36 @@ final class RateLimitFinisher extends AbstractFinisher
 
     private function getRateLimiter(): LimiterInterface
     {
-        $policy = $this->parseOption('policy');
-        $interval = $this->parseOption('interval');
-        $limit = $this->parseOption('limit');
-
         // @phpstan-ignore-next-line Array with keys is not allowed. Use value object to pass data instead
         $config = [
             'id' => 'form-rate-limit',
-            'policy' => $policy,
-            'interval' => $interval,
-            'limit' => $limit,
+            'interval' => $this->interval,
+            'limit' => $this->limit,
+            'policy' => $this->policy,
         ];
 
         $limiterFactory = new RateLimiterFactory($config, $this->storage);
 
         return $limiterFactory->create($this->buildKey());
+    }
+
+    private function renderExceededMessage(): string
+    {
+        $template = $this->parseOption('template');
+        if (! \is_string($template)) {
+            return 'Rate limit exceeded!';
+        }
+
+        /** @var StandaloneView $view */
+        $view = GeneralUtility::makeInstance(StandaloneView::class);
+        $view->setTemplatePathAndFilename($template);
+        $view->assignMultiple([
+            'policy' => $this->policy,
+            'interval' => $this->interval,
+            'limit' => $this->limit,
+        ]);
+
+        return $view->render();
     }
 
     private function buildKey(): string

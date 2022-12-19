@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
 use Rector\Core\ValueObject\PhpVersion;
+use Rector\Php74\Rector\LNumber\AddLiteralSeparatorToNumberRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
+use Rector\TypeDeclaration\Rector\FunctionLike\AddReturnTypeDeclarationFromYieldsRector;
 
 return static function (RectorConfig $config): void {
     $config->import(LevelSetList::UP_TO_PHP_74);
@@ -26,5 +28,12 @@ return static function (RectorConfig $config): void {
     ]);
     $config->paths([
         __DIR__ . '/Classes',
+        __DIR__ . '/Tests',
+    ]);
+    $config->skip([
+        AddLiteralSeparatorToNumberRector::class,
+        AddReturnTypeDeclarationFromYieldsRector::class => [
+            __DIR__ . '/Tests',
+        ],
     ]);
 };

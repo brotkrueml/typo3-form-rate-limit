@@ -1,5 +1,5 @@
 .PHONY: qa
-qa: cs phpstan rector-dry yaml-lint
+qa: cs phpstan rector-dry tests yaml-lint
 
 .PHONY: coding-standards
 cs: vendor
@@ -16,6 +16,10 @@ rector: vendor
 .PHONY: rector-dry
 rector-dry: vendor
 	.Build/bin/rector --dry-run
+
+.PHONY: tests
+tests: vendor
+	.Build/bin/phpunit --configuration=Tests/phpunit.xml.dist
 
 vendor: composer.json composer.lock
 	composer validate

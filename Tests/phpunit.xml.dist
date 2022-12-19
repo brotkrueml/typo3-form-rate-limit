@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<phpunit
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../.Build/vendor/phpunit/phpunit/phpunit.xsd"
+    convertDeprecationsToExceptions="true"
+    testdox="true"
+>
+    <coverage>
+        <include>
+            <directory>../Classes/</directory>
+        </include>
+    </coverage>
+    <testsuites>
+        <testsuite name="Unit tests">
+            <directory>Unit/</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>

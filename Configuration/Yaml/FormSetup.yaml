@@ -14,3 +14,4 @@ TYPO3:
                 interval: '1 hour'
                 limit: 1
                 restrictions: []
+                template: 'EXT:form_rate_limit/Resources/Private/Templates/RateLimitExceeded.html'
