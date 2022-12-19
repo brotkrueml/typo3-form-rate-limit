@@ -1,0 +1,5 @@
+.Build
+.idea
+.phpunit.result.cache
+composer.lock
+*GENERATED*

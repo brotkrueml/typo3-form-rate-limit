@@ -1,0 +1,63 @@
+{
+    "name": "brotkrueml/typo3-form-rate-limit",
+    "description": "TYPO3 form finisher for rate limiting when sending a form",
+    "license": "GPL-2.0-or-later",
+    "type": "typo3-cms-extension",
+    "authors": [
+        {
+            "name": "Chris Müller",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/brotkrueml/typo3-form-rate-limit/issues",
+        "source": "https://github.com/brotkrueml/typo3-form-rate-limit",
+        "docs": "https://docs.typo3.org/p/brotkrueml/typo3-form-rate-limit/main/en-us/"
+    },
+    "require": {
+        "php": ">=7.4",
+        "typo3/cms-core": "^11.5",
+        "typo3/cms-extbase": "^11.5",
+        "typo3/cms-form": "^11.5"
+    },
+    "require-dev": {
+        "brotkrueml/coding-standards": "~3.0.0",
+        "ergebnis/composer-normalize": "~2.28.3",
+        "phpstan/extension-installer": "^1.2",
+        "phpstan/phpstan": "1.9.4",
+        "rector/rector": "0.15.1",
+        "symfony/yaml": "^5.4",
+        "symplify/phpstan-rules": "^10.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Brotkrueml\\FormRateLimit\\": "Classes"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Brotkrueml\\FormRateLimit\\Tests\\": "Tests"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true,
+            "typo3/class-alias-loader": true,
+            "typo3/cms-composer-installers": true,
+            "phpstan/extension-installer": true
+        },
+        "bin-dir": ".Build/bin",
+        "sort-packages": true,
+        "vendor-dir": ".Build/vendor"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "1.0.x-dev"
+        },
+        "typo3/cms": {
+            "app-dir": ".Build",
+            "extension-key": "form_rate_limit",
+            "web-dir": ".Build/web"
+        }
+    }
+}

@@ -1,0 +1,16 @@
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          finishersDefinition:
+            RateLimit:
+              formEditor:
+                iconIdentifier: 'form-finisher'
+                label: 'Rate Limit'
+              implementationClassName: 'Brotkrueml\FormRateLimit\Domain\Finishers\RateLimitFinisher'
+              options:
+                policy: 'sliding_window'
+                interval: '1 hour'
+                limit: 1
+                restrictions: []
