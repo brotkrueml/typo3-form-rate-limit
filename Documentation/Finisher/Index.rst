@@ -11,13 +11,13 @@ Target group: **Integrators**
 For now, the finisher can only be integrated directly into the YAML form
 definition and not via the Forms module.
 
-.. note::
-   The :yaml:`RateLimit` finisher should be the first finisher in line.
-
 Under the hood, the `symfony/rate-limiter`_ is used. This is the same rate
 limiter that TYPO3 Core uses to limit the number of incorrect backend logins.
 
 .. _symfony/rate-limiter: https://symfony.com/doc/current/rate_limiter.html
+
+.. note::
+   Every time the cache is cleared, the rate limiter will be reset.
 
 
 Example
@@ -43,6 +43,9 @@ Let's start with an example:
 The example uses the "sliding window" :ref:`policy <options-policy>`. This form
 can be submitted successfully twice within one hour from the same IP address
 with the same provided email address.
+
+.. attention::
+   The :yaml:`RateLimit` finisher should be the first finisher in line.
 
 
 Options
