@@ -125,10 +125,37 @@ found in the following list.
       In connection mode the content element ID is the same for each language.
       In free mode the content element ID is different for each language.
 
-   :yaml:`{aFormField}`
+   :yaml:`{someFormField}`
       Every form field can be used to add an additional restriction. The field
       identifier must be surrounded by curly brackets.
 
-      For example, if you want to limit the submission to the email address,
-      this field can be added to the restriction list as :yaml:`{email}`
-      if the identifier of the email address field is named :yaml:`email`.
+      For example, if you want to limit the submission to the given email
+      address, this field can be added to the restriction list as
+      :yaml:`{email}` if the identifier of the email address field is named
+      :yaml:`email`.
+
+   :yaml:`someCustomValue`
+      You can set a custom value that will be used unchanged as part of the
+      restrictions.
+
+   **Examples:**
+
+   -  Limit by the form and an email address (available as "email" field):
+
+      .. code-block:: yaml
+
+         restrictions:
+            - '__formIdentifier'
+            - '{email}'
+
+   -  Limit by a custom value and some of the defined fields. This may be
+      helpful when you have the form multiple times on the website:
+
+      .. code-block:: yaml
+
+         restrictions:
+            - 'our-weekend-raffle'
+            - '{name}'
+            - '{address}'
+            - '{zip}'
+            - '{city}'
