@@ -107,11 +107,10 @@ found in the following list.
 .. confval:: restrictions
 
    :Type: array
-   :Default: :yaml:`[]`
+   :Default: :yaml:`['__ipAddress', '__formIdentifier']`
 
    The restrictions for limiting the submission of a form. The default value
-   defines no restriction, so all forms using this finisher are bounded
-   together.
+   combines the IP address and the form identifier.
 
    The possible values can be combined at will:
 

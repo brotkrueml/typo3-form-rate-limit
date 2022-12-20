@@ -31,6 +31,21 @@ final class RateLimitFinisher extends AbstractFinisher
     private int $limit;
     private string $policy;
 
+    /**
+     * @var array<string, string|int|list<string>>
+     * @phpstan-ignore-next-line Array with keys is not allowed. Use value object to pass data instead
+     */
+    protected $defaultOptions = [
+        'policy' => 'sliding_window',
+        'interval' => '1 hour',
+        'limit' => 1,
+        'restrictions' => [
+            '__ipAddress',
+            '__formIdentifier',
+        ],
+        'template' => 'EXT:form_rate_limit/Resources/Private/Templates/RateLimitExceeded.html',
+    ];
+
     public function __construct(CachingFrameworkStorage $storage)
     {
         $this->storage = $storage;
