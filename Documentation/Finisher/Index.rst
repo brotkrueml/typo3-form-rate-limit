@@ -121,7 +121,10 @@ found in the following list.
 
    :yaml:`__formIdentifier`
       The form identifier is taken into account. This is a combination of the
-      form identifier and the content element ID.
+      identifier in the form definition and the content element ID.
+
+      In connection mode the content element ID is the same for each language.
+      In free mode the content element ID is different for each language.
 
    :yaml:`{aFormField}`
       Every form field can be used to add an additional restriction. The field
