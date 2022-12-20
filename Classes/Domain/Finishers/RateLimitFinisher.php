@@ -96,6 +96,7 @@ final class RateLimitFinisher extends AbstractFinisher
         $view = GeneralUtility::makeInstance(StandaloneView::class);
         $view->setTemplatePathAndFilename($template);
         $view->assignMultiple([
+            'formIdentifier' => $this->finisherContext->getFormRuntime()->getIdentifier(),
             'policy' => $this->policy,
             'interval' => $this->interval,
             'limit' => $this->limit,
