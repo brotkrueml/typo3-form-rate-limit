@@ -11,25 +11,22 @@ declare(strict_types=1);
 
 namespace Brotkrueml\FormRateLimit\Domain\Finishers;
 
+use Brotkrueml\FormRateLimit\Dto\Options;
 use Brotkrueml\FormRateLimit\Guards\IntervalGuard;
 use Brotkrueml\FormRateLimit\Guards\LimitGuard;
 use Brotkrueml\FormRateLimit\Guards\PolicyGuard;
-use Symfony\Component\RateLimiter\LimiterInterface;
-use Symfony\Component\RateLimiter\RateLimiterFactory;
-use TYPO3\CMS\Core\RateLimiter\Storage\CachingFrameworkStorage;
+use Brotkrueml\FormRateLimit\RateLimiter\FormRateLimitFactory;
+use TYPO3\CMS\Core\Http\NormalizedParams;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 use TYPO3\CMS\Form\Domain\Finishers\AbstractFinisher;
 
 final class RateLimitFinisher extends AbstractFinisher
 {
-    private CachingFrameworkStorage $storage;
+    private FormRateLimitFactory $rateLimitFactory;
     private IntervalGuard $intervalGuard;
     private LimitGuard $limitGuard;
     private PolicyGuard $policyGuard;
-    private string $interval;
-    private int $limit;
-    private string $policy;
 
     /**
      * @var array<string, string|int|list<string>>
@@ -46,9 +43,9 @@ final class RateLimitFinisher extends AbstractFinisher
         'template' => 'EXT:form_rate_limit/Resources/Private/Templates/RateLimitExceeded.html',
     ];
 
-    public function __construct(CachingFrameworkStorage $storage)
+    public function __construct(FormRateLimitFactory $rateLimitFactory)
     {
-        $this->storage = $storage;
+        $this->rateLimitFactory = $rateLimitFactory;
         $this->intervalGuard = new IntervalGuard();
         $this->limitGuard = new LimitGuard();
         $this->policyGuard = new PolicyGuard();
@@ -56,36 +53,30 @@ final class RateLimitFinisher extends AbstractFinisher
 
     protected function executeInternal(): ?string
     {
-        $this->interval = $this->intervalGuard->guard($this->parseOption('interval'));
-        $this->limit = $this->limitGuard->guard($this->parseOption('limit'));
-        $this->policy = $this->policyGuard->guard($this->parseOption('policy'));
+        $options = new Options(
+            $this->intervalGuard->guard($this->parseOption('interval')),
+            $this->limitGuard->guard($this->parseOption('limit')),
+            $this->policyGuard->guard($this->parseOption('policy')),
+            $this->parseOption('restrictions')
+        );
 
-        $rateLimiter = $this->getRateLimiter();
-        if (! $rateLimiter->consume()->isAccepted()) {
+        /** @var NormalizedParams $normalizedParams */
+        $normalizedParams = $this->finisherContext->getRequest()->getAttribute('normalizedParams');
+        $limiter = $this->rateLimitFactory->createRateLimiter(
+            $options,
+            $this->finisherContext->getFormRuntime()->getIdentifier(),
+            $normalizedParams->getRemoteAddress()
+        );
+        if (! $limiter->consume()->isAccepted()) {
             $this->finisherContext->cancel();
 
-            return $this->renderExceededMessage();
+            return $this->renderExceededMessage($options);
         }
 
         return null;
     }
 
-    private function getRateLimiter(): LimiterInterface
-    {
-        // @phpstan-ignore-next-line Array with keys is not allowed. Use value object to pass data instead
-        $config = [
-            'id' => 'form-rate-limit',
-            'interval' => $this->interval,
-            'limit' => $this->limit,
-            'policy' => $this->policy,
-        ];
-
-        $limiterFactory = new RateLimiterFactory($config, $this->storage);
-
-        return $limiterFactory->create($this->buildKey());
-    }
-
-    private function renderExceededMessage(): string
+    private function renderExceededMessage(Options $options): string
     {
         $template = $this->parseOption('template');
         if (! \is_string($template)) {
@@ -97,38 +88,11 @@ final class RateLimitFinisher extends AbstractFinisher
         $view->setTemplatePathAndFilename($template);
         $view->assignMultiple([
             'formIdentifier' => $this->finisherContext->getFormRuntime()->getIdentifier(),
-            'policy' => $this->policy,
-            'interval' => $this->interval,
-            'limit' => $this->limit,
+            'interval' => $options->getInterval(),
+            'limit' => $options->getLimit(),
+            'policy' => $options->getPolicy(),
         ]);
 
         return $view->render();
-    }
-
-    private function buildKey(): string
-    {
-        $keyParts = [];
-
-        $restrictions = $this->parseOption('restrictions');
-        if (! \is_array($restrictions)) {
-            return '';
-        }
-
-        foreach ($restrictions as $restriction) {
-            if ($restriction === '__ipAddress') {
-                // @phpstan-ignore-next-line Call to method getAttribute() on an unknown class TYPO3\CMS\Extbase\Mvc\Request.
-                $keyParts[] = $this->finisherContext->getRequest()->getAttribute('normalizedParams')->getRemoteAddress();
-                continue;
-            }
-
-            if ($restriction === '__formIdentifier') {
-                $keyParts[] = $this->finisherContext->getFormRuntime()->getIdentifier();
-                continue;
-            }
-
-            $keyParts[] = $restriction;
-        }
-
-        return \implode('-', $keyParts);
     }
 }
