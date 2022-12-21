@@ -37,12 +37,14 @@ Let's start with an example:
            - '__ipAddress'
            - '__formIdentifier'
            - '{email}'
+         template: 'EXT:my_extension/Resources/Private/Templates/Form/RateLimitExceeded.html'
 
      # other finishers follow
 
 The example uses the "sliding window" :ref:`policy <options-policy>`. This form
 can be submitted successfully twice within one hour from the same IP address
-with the same provided email address.
+with the same provided email address. Additionally, a custom :ref:`template
+<options-template>` for the error message is assigned.
 
 .. attention::
    The :yaml:`RateLimit` finisher should be the first finisher in line.
@@ -162,3 +164,28 @@ found in the following list.
             - '{address}'
             - '{zip}'
             - '{city}'
+
+.. _options-template:
+.. confval:: template
+
+   :Type: string
+   :Default: :yaml:`EXT:form_rate_limit/Resources/Private/Templates/RateLimitExceeded.html`
+
+   The extension provides a Fluid template that is used when the rate limit
+   is exceeded. You can (and usually want) to customise it to your needs. The
+   :yaml:`template` option gives you the possibility to assign a custom template
+   to a finisher. Some variables in the template are available:
+
+   :html:`formIdentifier`
+      The form identifier can be used to insert an anchor into the template. The
+      browser will then jump to this anchor in case the rate limit is reached.
+
+   :html:`interval`
+      The configured :ref:`interval <options-limit>` option.
+
+   :html:`limit`
+      The value of the specified :ref:`limit <options-limit>`.
+
+   :html:`policy`
+      The defined :ref:`policy <options-policy>`.
+
