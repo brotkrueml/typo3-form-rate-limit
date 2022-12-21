@@ -43,6 +43,7 @@ sending a form.
    Introduction/Index
    Installation/Index
    Finisher/Index
+   Troubleshooting/Index
    Changelog/Index
 
 .. toctree::
