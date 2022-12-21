@@ -91,7 +91,7 @@ found in the following list.
    :Type: string
    :Default: :yaml:`sliding_window`
 
-   The policy. Two policies are currently supported:
+   Two policies are currently available:
 
    :yaml:`fixed_window`
       This is the simplest technique and it is based on setting a limit for a
@@ -104,6 +104,8 @@ found in the following list.
       hour window that slides over the timeline.
 
       See: `Sliding Window Rate Limiter`_  for details.
+
+   The "token_bucket" policy is currently not supported.
 
    .. _Fixed Window Rate Limiter: https://symfony.com/doc/current/rate_limiter.html#fixed-window-rate-limiter
    .. _Sliding Window Rate Limiter: https://symfony.com/doc/current/rate_limiter.html#sliding-window-rate-limiter
