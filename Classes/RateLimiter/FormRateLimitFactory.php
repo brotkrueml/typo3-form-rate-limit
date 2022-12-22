@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\FormRateLimit\RateLimiter;
 
-use Brotkrueml\FormRateLimit\Dto\Options;
+use Brotkrueml\FormRateLimit\Domain\Dto\Options;
 use Symfony\Component\RateLimiter\LimiterInterface;
 use Symfony\Component\RateLimiter\RateLimiterFactory;
 use Symfony\Component\RateLimiter\Storage\StorageInterface;

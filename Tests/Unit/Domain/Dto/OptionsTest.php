@@ -9,9 +9,9 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\FormRateLimit\Tests\Unit\Dto\Options;
+namespace Brotkrueml\FormRateLimit\Tests\Unit\Domain\Dto;
 
-use Brotkrueml\FormRateLimit\Dto\Options;
+use Brotkrueml\FormRateLimit\Domain\Dto\Options;
 use PHPUnit\Framework\TestCase;
 
 final class OptionsTest extends TestCase

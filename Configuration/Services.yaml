@@ -6,7 +6,7 @@ services:
 
   Brotkrueml\FormRateLimit\:
     resource: '../Classes/*'
-    exclude: '../Classes/Extension.php'
+    exclude: '../Classes/{Domain/Dto,Extension.php}'
 
   Brotkrueml\FormRateLimit\RateLimiter\FormRateLimitFactory:
     arguments:

@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Brotkrueml\FormRateLimit\Domain\Finishers;
 
-use Brotkrueml\FormRateLimit\Dto\Options;
+use Brotkrueml\FormRateLimit\Domain\Dto\Options;
 use Brotkrueml\FormRateLimit\Guards\IntervalGuard;
 use Brotkrueml\FormRateLimit\Guards\LimitGuard;
 use Brotkrueml\FormRateLimit\Guards\PolicyGuard;
