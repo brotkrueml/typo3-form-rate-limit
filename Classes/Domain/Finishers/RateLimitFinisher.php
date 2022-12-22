@@ -31,8 +31,7 @@ final class RateLimitFinisher extends AbstractFinisher
     private RestrictionsGuard $restrictionGuard;
 
     /**
-     * @var array<string, string|int|list<string>>
-     * @phpstan-ignore-next-line Array with keys is not allowed. Use value object to pass data instead
+     * @var array<string, string|int|string[]>
      */
     protected $defaultOptions = [
         'policy' => 'sliding_window',

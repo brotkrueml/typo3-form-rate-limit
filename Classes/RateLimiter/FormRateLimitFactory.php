@@ -30,7 +30,6 @@ final class FormRateLimitFactory
 
     public function createRateLimiter(Options $options, string $formIdentifier, string $ipAddress): LimiterInterface
     {
-        // @phpstan-ignore-next-line Array with keys is not allowed. Use value object to pass data instead
         $config = [
             'id' => 'form-rate-limit',
             'interval' => $options->getInterval(),
