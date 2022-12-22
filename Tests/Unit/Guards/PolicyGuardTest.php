@@ -16,7 +16,7 @@ use PHPUnit\Framework\TestCase;
 
 final class PolicyGuardTest extends TestCase
 {
-    public $subject;
+    private PolicyGuard $subject;
 
     protected function setUp(): void
     {

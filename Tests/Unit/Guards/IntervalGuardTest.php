@@ -16,7 +16,7 @@ use PHPUnit\Framework\TestCase;
 
 final class IntervalGuardTest extends TestCase
 {
-    public $subject;
+    private IntervalGuard $subject;
 
     protected function setUp(): void
     {

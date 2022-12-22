@@ -16,7 +16,7 @@ use PHPUnit\Framework\TestCase;
 
 final class LimitGuardTest extends TestCase
 {
-    public $subject;
+    private LimitGuard $subject;
 
     protected function setUp(): void
     {
