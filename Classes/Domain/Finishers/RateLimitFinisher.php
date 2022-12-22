@@ -15,6 +15,7 @@ use Brotkrueml\FormRateLimit\Dto\Options;
 use Brotkrueml\FormRateLimit\Guards\IntervalGuard;
 use Brotkrueml\FormRateLimit\Guards\LimitGuard;
 use Brotkrueml\FormRateLimit\Guards\PolicyGuard;
+use Brotkrueml\FormRateLimit\Guards\RestrictionsGuard;
 use Brotkrueml\FormRateLimit\RateLimiter\FormRateLimitFactory;
 use TYPO3\CMS\Core\Http\NormalizedParams;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -27,6 +28,7 @@ final class RateLimitFinisher extends AbstractFinisher
     private IntervalGuard $intervalGuard;
     private LimitGuard $limitGuard;
     private PolicyGuard $policyGuard;
+    private RestrictionsGuard $restrictionGuard;
 
     /**
      * @var array<string, string|int|list<string>>
@@ -43,12 +45,16 @@ final class RateLimitFinisher extends AbstractFinisher
         'template' => 'EXT:form_rate_limit/Resources/Private/Templates/RateLimitExceeded.html',
     ];
 
+    /**
+     * @noinspection PhpMissingParentConstructorInspection
+     */
     public function __construct(FormRateLimitFactory $rateLimitFactory)
     {
         $this->rateLimitFactory = $rateLimitFactory;
         $this->intervalGuard = new IntervalGuard();
         $this->limitGuard = new LimitGuard();
         $this->policyGuard = new PolicyGuard();
+        $this->restrictionGuard = new RestrictionsGuard();
     }
 
     protected function executeInternal(): ?string
@@ -57,7 +63,7 @@ final class RateLimitFinisher extends AbstractFinisher
             $this->intervalGuard->guard($this->parseOption('interval')),
             $this->limitGuard->guard($this->parseOption('limit')),
             $this->policyGuard->guard($this->parseOption('policy')),
-            $this->parseOption('restrictions')
+            $this->restrictionGuard->guard($this->parseOption('restrictions')),
         );
 
         /** @var NormalizedParams $normalizedParams */

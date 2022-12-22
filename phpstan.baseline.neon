@@ -1,11 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Parameter \\#4 \\$restrictions of class Brotkrueml\\\\FormRateLimit\\\\Dto\\\\Options constructor expects array\\<string\\>, array\\|string\\|null given\\.$#"
-			count: 1
-			path: Classes/Domain/Finishers/RateLimitFinisher.php
-
-		-
 			message: "#^\"@\\\\DateInterval\\:\\:createFromDateString\\(\\$interval\\)\" is forbidden to use$#"
 			count: 1
 			path: Classes/Guards/IntervalGuard.php
