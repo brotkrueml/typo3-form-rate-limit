@@ -16,6 +16,7 @@
     },
     "require": {
         "php": ">=7.4",
+        "ext-json": "*",
         "symfony/rate-limiter": "^5.4",
         "typo3/cms-core": "^11.5.3",
         "typo3/cms-extbase": "^11.5.3",

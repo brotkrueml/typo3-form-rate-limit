@@ -32,9 +32,14 @@ final class FileStorage implements StorageInterface
     {
         $this->ensureStoragePathExists();
 
+        $content = [
+            'state' => \serialize($limiterState),
+            'expiry' => \time() + $limiterState->getExpirationTime() + 1,
+        ];
+
         \file_put_contents(
             $this->getFilePath($limiterState->getId()),
-            serialize($limiterState)
+            \json_encode($content, \JSON_THROW_ON_ERROR)
         );
     }
 
@@ -50,11 +55,18 @@ final class FileStorage implements StorageInterface
             return null;
         }
 
-        $value = \unserialize($content, [
+        try {
+            /** @var array{state: string, expiry: int} $data */
+            $data = \json_decode($content, true, 512, \JSON_THROW_ON_ERROR);
+        } catch (\JsonException $e) {
+            return null;
+        }
+
+        $state = \unserialize($data['state'], [
             'allowed_classes' => [Window::class, SlidingWindow::class],
         ]);
-        if ($value instanceof LimiterStateInterface) {
-            return $value;
+        if ($state instanceof LimiterStateInterface) {
+            return $state;
         }
 
         return null;
