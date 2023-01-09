@@ -8,7 +8,7 @@ Command
 
 Target group: **Administrators**
 
-The states of the rate limiter stored in the :file:`var/form_rate_limit/`
+The states of the rate limiter is stored in the :file:`var/form_rate_limit/`
 folder. To clean up this folder with expired states, a command is available. You
 can call it on the console with:
 
@@ -25,3 +25,5 @@ can call it on the console with:
       .. code-block:: bash
 
          typo3/sysext/core/bin/typo3 formratelimit:cleanupexpiredstorageentries
+
+You can add it to a crontab to run regularly.

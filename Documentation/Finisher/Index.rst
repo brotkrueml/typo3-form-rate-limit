@@ -17,8 +17,10 @@ limiter that TYPO3 Core uses to limit the number of incorrect backend logins.
 
 .. _symfony/rate-limiter: https://symfony.com/doc/current/rate_limiter.html
 
-.. note::
-   Every time the cache is cleared, the rate limiter will be reset.
+.. tip::
+   The state of a rate limit for a restriction combination is currently stored
+   in the file system. To clean up the files and free disk storage a
+   :ref:`command <command>` is available.
 
 
 Example
