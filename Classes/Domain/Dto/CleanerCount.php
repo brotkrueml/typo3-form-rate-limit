@@ -16,15 +16,23 @@ namespace Brotkrueml\FormRateLimit\Domain\Dto;
  */
 final class CleanerCount
 {
-    private int $total;
-    private int $deleted;
-    private int $erroneous;
+    private int $total = 0;
+    private int $deleted = 0;
+    private int $erroneous = 0;
 
-    public function __construct(int $total, int $deleted, int $erroneous)
+    public function incrementTotal(): void
     {
-        $this->total = $total;
-        $this->deleted = $deleted;
-        $this->erroneous = $erroneous;
+        $this->total++;
+    }
+
+    public function incrementDeleted(): void
+    {
+        $this->deleted++;
+    }
+
+    public function incrementErroneous(): void
+    {
+        $this->erroneous++;
     }
 
     public function getTotal(): int

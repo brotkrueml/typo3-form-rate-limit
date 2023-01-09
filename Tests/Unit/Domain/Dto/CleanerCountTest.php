@@ -16,15 +16,59 @@ use PHPUnit\Framework\TestCase;
 
 final class CleanerCountTest extends TestCase
 {
+    private CleanerCount $subject;
+
+    protected function setUp(): void
+    {
+        $this->subject = new CleanerCount();
+    }
+
     /**
      * @test
      */
-    public function propertiesAreSetCorrectly(): void
+    public function propertiesInitialisedCorrectly(): void
     {
-        $subject = new CleanerCount(3, 2, 1);
+        self::assertSame(0, $this->subject->getTotal());
+        self::assertSame(0, $this->subject->getErroneous());
+        self::assertSame(0, $this->subject->getDeleted());
+    }
 
-        self::assertSame(3, $subject->getTotal());
-        self::assertSame(2, $subject->getDeleted());
-        self::assertSame(1, $subject->getErroneous());
+    /**
+     * @test
+     */
+    public function incrementAndGetTotal(): void
+    {
+        $this->subject->incrementTotal();
+        $this->subject->incrementTotal();
+
+        self::assertSame(2, $this->subject->getTotal());
+        self::assertSame(0, $this->subject->getErroneous());
+        self::assertSame(0, $this->subject->getDeleted());
+    }
+
+    /**
+     * @test
+     */
+    public function incrementAndGetErroneous(): void
+    {
+        $this->subject->incrementErroneous();
+        $this->subject->incrementErroneous();
+
+        self::assertSame(0, $this->subject->getTotal());
+        self::assertSame(2, $this->subject->getErroneous());
+        self::assertSame(0, $this->subject->getDeleted());
+    }
+
+    /**
+     * @test
+     */
+    public function incrementAndGetDeleted(): void
+    {
+        $this->subject->incrementDeleted();
+        $this->subject->incrementDeleted();
+
+        self::assertSame(0, $this->subject->getTotal());
+        self::assertSame(0, $this->subject->getErroneous());
+        self::assertSame(2, $this->subject->getDeleted());
     }
 }

@@ -19,57 +19,61 @@ use Brotkrueml\FormRateLimit\Domain\Dto\CleanerCount;
 class FileStorageCleaner
 {
     private string $storagePath;
+    private CleanerCount $count;
 
     public function __construct(string $storagePath)
     {
         $this->storagePath = $storagePath;
+        $this->count = new CleanerCount();
     }
 
     public function cleanUp(): CleanerCount
     {
         if (! \is_dir($this->storagePath)) {
-            return new CleanerCount(0, 0, 0);
+            return $this->count;
         }
 
         $it = new \FilesystemIterator($this->storagePath);
-        $countTotal = 0;
-        $countDeleted = 0;
-        $countErroneous = 0;
         foreach ($it as $file) {
-            /** @var \SplFileInfo $file */
-            if ($file->getType() !== 'file') {
-                continue;
-            }
-            if ($file->getExtension() !== '') {
-                continue;
-            }
-
-            $countTotal++;
-
-            $content = \file_get_contents($file->getPathname());
-            if ($content === false) {
-                $countErroneous++;
-                continue;
-            }
-            try {
-                /** @var array{state: string, expiry: int} $data */
-                $data = \json_decode($content, true, 512, \JSON_THROW_ON_ERROR);
-            } catch (\JsonException $e) {
-                $countErroneous++;
-                continue;
-            }
-
-            if ($data['expiry'] >= \time()) {
-                continue;
-            }
-
-            if (! \unlink($file->getPathname())) {
-                $countErroneous++;
-            }
-
-            $countDeleted++;
+            // @phpstan-ignore-next-line Parameter #1 $file of method Brotkrueml\FormRateLimit\RateLimiter\Storage\FileStorageCleaner::processFile() expects SplFileInfo, SplFileInfo|string given.
+            $this->processFile($file);
         }
 
-        return new CleanerCount($countTotal, $countDeleted, $countErroneous);
+        return $this->count;
+    }
+
+    private function processFile(\SplFileInfo $file): void
+    {
+        if ($file->getType() !== 'file') {
+            return;
+        }
+        if ($file->getExtension() !== '') {
+            return;
+        }
+
+        $this->count->incrementTotal();
+
+        $content = \file_get_contents($file->getPathname());
+        if ($content === false) {
+            $this->count->incrementErroneous();
+            return;
+        }
+        try {
+            /** @var array{state: string, expiry: int} $data */
+            $data = \json_decode($content, true, 512, \JSON_THROW_ON_ERROR);
+        } catch (\JsonException $e) {
+            $this->count->incrementErroneous();
+            return;
+        }
+
+        if ($data['expiry'] >= \time()) {
+            return;
+        }
+
+        if (! \unlink($file->getPathname())) {
+            $this->count->incrementErroneous();
+        }
+
+        $this->count->incrementDeleted();
     }
 }

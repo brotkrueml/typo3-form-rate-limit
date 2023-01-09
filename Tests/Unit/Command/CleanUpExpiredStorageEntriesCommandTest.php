@@ -19,6 +19,9 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
 
+/**
+ * @covers \Brotkrueml\FormRateLimit\Command\CleanUpExpiredStorageEntriesCommand
+ */
 final class CleanUpExpiredStorageEntriesCommandTest extends TestCase
 {
     /**
@@ -40,14 +43,22 @@ final class CleanUpExpiredStorageEntriesCommandTest extends TestCase
      */
     public function executeReturnsCorrectResultsWithErroneousFiles(): void
     {
+        $count = new CleanerCount();
+        $count->incrementTotal();
+        $count->incrementTotal();
+        $count->incrementTotal();
+        $count->incrementErroneous();
+        $count->incrementDeleted();
+        $count->incrementDeleted();
+
         $this->fileStorageCleanerStub
             ->method('cleanUp')
-            ->willReturn(new CleanerCount(42, 21, 3));
+            ->willReturn($count);
 
         $this->commandTester->execute([]);
 
-        self::assertStringContainsString('[WARNING] 3 files could not be deleted.', $this->commandTester->getDisplay());
-        self::assertStringContainsString('[OK] 21 expired files were deleted successfully, 42 total files were available.', $this->commandTester->getDisplay());
+        self::assertStringContainsString('[WARNING] 1 files could not be deleted.', $this->commandTester->getDisplay());
+        self::assertStringContainsString('[OK] 2 expired files were deleted successfully, 3 total files were available.', $this->commandTester->getDisplay());
         self::assertSame(Command::SUCCESS, $this->commandTester->getStatusCode());
     }
 
@@ -56,14 +67,21 @@ final class CleanUpExpiredStorageEntriesCommandTest extends TestCase
      */
     public function executeReturnsCorrectResultsWithoutErroneousFiles(): void
     {
+        $count = new CleanerCount();
+        $count->incrementTotal();
+        $count->incrementTotal();
+        $count->incrementTotal();
+        $count->incrementDeleted();
+        $count->incrementDeleted();
+
         $this->fileStorageCleanerStub
             ->method('cleanUp')
-            ->willReturn(new CleanerCount(41, 20, 0));
+            ->willReturn($count);
 
         $this->commandTester->execute([]);
 
         self::assertStringNotContainsString('files could not be deleted.', $this->commandTester->getDisplay());
-        self::assertStringContainsString('[OK] 20 expired files were deleted successfully, 41 total files were available.', $this->commandTester->getDisplay());
+        self::assertStringContainsString('[OK] 2 expired files were deleted successfully, 3 total files were available.', $this->commandTester->getDisplay());
         self::assertSame(Command::SUCCESS, $this->commandTester->getStatusCode());
     }
 }
