@@ -7,3 +7,4 @@
 /phpstan* export-ignore
 /rector.php export-ignore
 /Tests/ export-ignore
+*.xsd export-ignore

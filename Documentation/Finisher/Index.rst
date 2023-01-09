@@ -8,8 +8,9 @@ Finisher
 
 Target group: **Integrators**
 
-For now, the finisher can only be integrated directly into the YAML form
-definition and not via the Forms module.
+.. note::
+   For now, the finisher can only be integrated directly into the YAML form
+   definition and not via the Forms module.
 
 Under the hood, the `symfony/rate-limiter`_ is used. This is the same rate
 limiter that TYPO3 Core uses to limit the number of incorrect backend logins.

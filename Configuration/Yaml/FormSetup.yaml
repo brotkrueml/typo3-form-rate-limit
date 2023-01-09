@@ -3,9 +3,33 @@ TYPO3:
     Form:
       prototypes:
         standard:
+          formEditor:
+            translationFiles:
+              1673282811: 'EXT:form_rate_limit/Resources/Private/Language/Form.xlf'
+          formElementsDefinition:
+            Form:
+              formEditor:
+                editors:
+                  900:
+                    selectOptions:
+                      1673282811:
+                        value: 'RateLimit'
+                        label: 'formEditor.elements.Form.finisher.RateLimit.editor.header.label'
+                propertyCollections:
+                  finishers:
+                    1673282811:
+                      identifier: 'RateLimit'
+                      editors:
+                        100:
+                          identifier: 'header'
+                          label: 'formEditor.elements.Form.finisher.RateLimit.editor.header.label'
+                          templateName: 'Inspector-CollectionElementHeaderEditor'
+                        9999:
+                          identifier: 'removeButton'
+                          templateName: 'Inspector-RemoveElementEditor'
           finishersDefinition:
             RateLimit:
               formEditor:
                 iconIdentifier: 'form-finisher'
-                label: 'Rate Limit'
+                label: 'formEditor.elements.Form.finisher.RateLimit.editor.header.label'
               implementationClassName: 'Brotkrueml\FormRateLimit\Domain\Finishers\RateLimitFinisher'

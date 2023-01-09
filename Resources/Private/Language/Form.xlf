@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" original="EXT:form_rate_limit/Resources/Private/Language/Form.xlf" datatype="plaintext" date="2023-01-09T17:48:07+01:00">
+		<body>
+			<trans-unit id="formEditor.elements.Form.finisher.RateLimit.editor.header.label" resname="formEditor.elements.Form.finisher.RateLimit.editor.header.label">
+				<source>Rate Limit</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
