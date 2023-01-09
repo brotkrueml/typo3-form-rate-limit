@@ -26,8 +26,12 @@ jobs:
             typo3-versions: ^11
           - php-versions: 8.1
             typo3-versions: ^11
+          - php-versions: 8.1
+            typo3-versions: ^12
           - php-versions: 8.2
             typo3-versions: ^11
+          - php-versions: 8.2
+            typo3-versions: ^12
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
@@ -84,7 +88,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
       - name: Install composer dependencies
         run: |
-          composer update --no-progress --prefer-dist --optimize-autoloader
+          composer require typo3/cms-core=^11.5 --no-progress --prefer-dist --optimize-autoloader
       - name: Normalize composer.json
         run: |
           composer normalize --dry-run

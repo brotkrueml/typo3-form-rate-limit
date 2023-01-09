@@ -17,11 +17,10 @@
     "require": {
         "php": ">=7.4",
         "ext-json": "*",
-        "symfony/rate-limiter": "^5.4",
-        "typo3/cms-core": "^11.5.3",
-        "typo3/cms-extbase": "^11.5.3",
-        "typo3/cms-fluid": "^11.5.3",
-        "typo3/cms-form": "^11.5.3"
+        "symfony/rate-limiter": "^5.4 || ^6.2",
+        "typo3/cms-core": "^11.5.3 || ^12.1",
+        "typo3/cms-fluid": "^11.5.3 || ^12.1",
+        "typo3/cms-form": "^11.5.3 || ^12.1"
     },
     "require-dev": {
         "brotkrueml/coding-standards": "~3.0.0",
@@ -30,7 +29,7 @@
         "phpstan/phpstan": "1.9.8",
         "phpunit/phpunit": "^9.5.23",
         "rector/rector": "0.15.3",
-        "symfony/yaml": "^5.4",
+        "symfony/yaml": "^5.4 || ^6.2",
         "symplify/phpstan-rules": "^11.1",
         "tomasvotruba/cognitive-complexity": "^0.0.5"
     },
