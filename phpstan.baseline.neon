@@ -4,8 +4,3 @@ parameters:
 			message: "#^\"@\\\\DateInterval\\:\\:createFromDateString\\(\\$interval\\)\" is forbidden to use$#"
 			count: 1
 			path: Classes/Guards/IntervalGuard.php
-
-		-
-			message: "#^Strict comparison using \\=\\=\\= between DateInterval and false will always evaluate to false\\.$#"
-			count: 1
-			path: Classes/Guards/IntervalGuard.php
