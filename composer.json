@@ -31,7 +31,8 @@
         "phpunit/phpunit": "^9.5.23",
         "rector/rector": "0.15.1",
         "symfony/yaml": "^5.4",
-        "symplify/phpstan-rules": "^11.1"
+        "symplify/phpstan-rules": "^11.1",
+        "tomasvotruba/cognitive-complexity": "^0.0.5"
     },
     "autoload": {
         "psr-4": {

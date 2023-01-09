@@ -7,15 +7,13 @@ includes:
 parameters:
     phpVersion: 70400
     level: 9
+    cognitive_complexity:
+        class: 10
+        function: 6
     paths:
         - Classes
 
 services:
-    -
-        class: Symplify\PHPStanRules\CognitiveComplexity\Rules\ClassLikeCognitiveComplexityRule
-        tags: [phpstan.rules.rule]
-        arguments:
-            maxClassCognitiveComplexity: 10
     -
         class: Symplify\PHPStanRules\Rules\ForbiddenFuncCallRule
         tags: [phpstan.rules.rule]
