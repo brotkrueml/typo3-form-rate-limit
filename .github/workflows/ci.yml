@@ -88,7 +88,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
       - name: Install composer dependencies
         run: |
-          composer require typo3/cms-core=^11.5 --no-progress --prefer-dist --optimize-autoloader
+          composer update --no-progress --prefer-dist --optimize-autoloader
       - name: Normalize composer.json
         run: |
           composer normalize --dry-run

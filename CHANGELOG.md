@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Prevent download of language pack for TYPO3 v12
+
 ## [1.0.0] - 2023-01-13
 
 Initial release

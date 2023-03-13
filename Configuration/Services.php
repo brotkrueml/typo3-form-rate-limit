@@ -1,6 +1,7 @@
 <?php
 
 use Brotkrueml\FormRateLimit\Command\CleanUpExpiredStorageEntriesCommand;
+use Brotkrueml\FormRateLimit\EventListener\PreventLanguagePackDownload;
 use Brotkrueml\FormRateLimit\Extension;
 use Brotkrueml\FormRateLimit\RateLimiter\FormRateLimitFactory;
 use Brotkrueml\FormRateLimit\RateLimiter\Storage\FileStorage;
@@ -37,5 +38,10 @@ return static function(ContainerConfigurator $configurator) {
             'command' => 'formratelimit:cleanupexpiredstorageentries',
             'description' => 'Clean up expired storage entries of form_rate_limit extension',
             'schedulable' => false,
+        ]);
+
+    $services->set(PreventLanguagePackDownload::class)
+        ->tag('event.listener', [
+            'identifier' => 'form-rate-limit/prevent-language-pack-download',
         ]);
 };
