@@ -18,9 +18,9 @@
         "php": ">=7.4",
         "ext-json": "*",
         "symfony/rate-limiter": "^5.4 || ^6.2",
-        "typo3/cms-core": "^11.5.3 || ^12.1",
-        "typo3/cms-fluid": "^11.5.3 || ^12.1",
-        "typo3/cms-form": "^11.5.3 || ^12.1"
+        "typo3/cms-core": "^11.5.3 || ^12.2",
+        "typo3/cms-fluid": "^11.5.3 || ^12.2",
+        "typo3/cms-form": "^11.5.3 || ^12.2"
     },
     "require-dev": {
         "brotkrueml/coding-standards": "~3.0.0",
