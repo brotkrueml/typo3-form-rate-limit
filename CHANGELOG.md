@@ -6,12 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2023-04-01
+
 ### Added
-- Prevent download of language pack for TYPO3 v12
+- Prevent download of language packs for TYPO3 v12
 
 ## [1.0.0] - 2023-01-13
 
 Initial release
 
-[Unreleased]: https://github.com/brotkrueml/typo3-form-rate-limit/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/brotkrueml/typo3-form-rate-limit/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/brotkrueml/typo3-form-rate-limit/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/brotkrueml/typo3-form-rate-limit/releases/tag/v1.0.0
