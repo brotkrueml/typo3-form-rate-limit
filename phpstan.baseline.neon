@@ -1,6 +1,21 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Call to method getIdentifier\\(\\) on an unknown class TYPO3\\\\CMS\\\\Form\\\\Domain\\\\Runtime\\\\FormRuntime\\.$#"
+			count: 2
+			path: Classes/Domain/Finishers/RateLimitFinisher.php
+
+		-
 			message: "#^\"@\\\\DateInterval\\:\\:createFromDateString\\(\\$interval\\)\" is forbidden to use$#"
 			count: 1
 			path: Classes/Guards/IntervalGuard.php
+
+		-
+			message: "#^Call to method create\\(\\) on an unknown class Symfony\\\\Component\\\\RateLimiter\\\\RateLimiterFactory\\.$#"
+			count: 1
+			path: Classes/RateLimiter/FormRateLimitFactory.php
+
+		-
+			message: "#^Instantiated class Symfony\\\\Component\\\\RateLimiter\\\\RateLimiterFactory not found\\.$#"
+			count: 1
+			path: Classes/RateLimiter/FormRateLimitFactory.php
