@@ -5,6 +5,8 @@ declare(strict_types=1);
 use Rector\Config\RectorConfig;
 use Rector\Core\ValueObject\PhpVersion;
 use Rector\Php74\Rector\LNumber\AddLiteralSeparatorToNumberRector;
+use Rector\PHPUnit\CodeQuality\Rector\Class_\PreferPHPUnitThisCallRector;
+use Rector\PHPUnit\CodeQuality\Rector\ClassMethod\ReplaceTestAnnotationWithPrefixedFunctionRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
@@ -17,9 +19,6 @@ return static function (RectorConfig $config): void {
     $config->import(SetList::EARLY_RETURN);
     $config->import(SetList::TYPE_DECLARATION);
     $config->import(PHPUnitSetList::PHPUNIT_CODE_QUALITY);
-    $config->import(PHPUnitSetList::PHPUNIT_EXCEPTION);
-    $config->import(PHPUnitSetList::PHPUNIT_SPECIFIC_METHOD);
-    $config->import(PHPUnitSetList::PHPUNIT_YIELD_DATA_PROVIDER);
 
     $config->phpVersion(PhpVersion::PHP_74);
 
@@ -35,5 +34,7 @@ return static function (RectorConfig $config): void {
         AddReturnTypeDeclarationFromYieldsRector::class => [
             __DIR__ . '/Tests',
         ],
+        PreferPHPUnitThisCallRector::class,
+        ReplaceTestAnnotationWithPrefixedFunctionRector::class,
     ]);
 };
