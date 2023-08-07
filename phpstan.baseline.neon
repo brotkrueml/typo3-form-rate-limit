@@ -2,7 +2,7 @@ parameters:
 	ignoreErrors:
 		-
 			message: "#^Call to method getIdentifier\\(\\) on an unknown class TYPO3\\\\CMS\\\\Form\\\\Domain\\\\Runtime\\\\FormRuntime\\.$#"
-			count: 2
+			count: 3
 			path: Classes/Domain/Finishers/RateLimitFinisher.php
 
 		-

@@ -12,11 +12,13 @@ declare(strict_types=1);
 namespace Brotkrueml\FormRateLimit\Domain\Finishers;
 
 use Brotkrueml\FormRateLimit\Domain\Dto\Options;
+use Brotkrueml\FormRateLimit\Event\RateLimitExceededEvent;
 use Brotkrueml\FormRateLimit\Guards\IntervalGuard;
 use Brotkrueml\FormRateLimit\Guards\LimitGuard;
 use Brotkrueml\FormRateLimit\Guards\PolicyGuard;
 use Brotkrueml\FormRateLimit\Guards\RestrictionsGuard;
 use Brotkrueml\FormRateLimit\RateLimiter\FormRateLimitFactory;
+use Psr\EventDispatcher\EventDispatcherInterface;
 use TYPO3\CMS\Core\Http\NormalizedParams;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
@@ -25,6 +27,7 @@ use TYPO3\CMS\Form\Domain\Finishers\AbstractFinisher;
 final class RateLimitFinisher extends AbstractFinisher
 {
     private FormRateLimitFactory $rateLimitFactory;
+    private EventDispatcherInterface $eventDispatcher;
     private IntervalGuard $intervalGuard;
     private LimitGuard $limitGuard;
     private PolicyGuard $policyGuard;
@@ -44,12 +47,10 @@ final class RateLimitFinisher extends AbstractFinisher
         'template' => 'EXT:form_rate_limit/Resources/Private/Templates/RateLimitExceeded.html',
     ];
 
-    /**
-     * @noinspection PhpMissingParentConstructorInspection
-     */
-    public function __construct(FormRateLimitFactory $rateLimitFactory)
+    public function __construct(FormRateLimitFactory $rateLimitFactory, EventDispatcherInterface $eventDispatcher)
     {
         $this->rateLimitFactory = $rateLimitFactory;
+        $this->eventDispatcher = $eventDispatcher;
         $this->intervalGuard = new IntervalGuard();
         $this->limitGuard = new LimitGuard();
         $this->policyGuard = new PolicyGuard();
@@ -73,6 +74,12 @@ final class RateLimitFinisher extends AbstractFinisher
             $normalizedParams->getRemoteAddress()
         );
         if (! $limiter->consume()->isAccepted()) {
+            $this->eventDispatcher->dispatch(
+                new RateLimitExceededEvent(
+                    $this->finisherContext->getFormRuntime()->getIdentifier(),
+                    $options
+                )
+            );
             $this->finisherContext->cancel();
 
             return $this->renderExceededMessage($options);

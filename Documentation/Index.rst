@@ -43,6 +43,7 @@ sending a form.
    Introduction/Index
    Installation/Index
    Finisher/Index
+   Events/Index
    Command/Index
    Troubleshooting/Index
    Changelog/Index
