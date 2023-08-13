@@ -77,7 +77,8 @@ final class RateLimitFinisher extends AbstractFinisher
             $this->eventDispatcher->dispatch(
                 new RateLimitExceededEvent(
                     $this->finisherContext->getFormRuntime()->getIdentifier(),
-                    $options
+                    $options,
+                    $this->finisherContext->getRequest()
                 )
             );
             $this->finisherContext->cancel();

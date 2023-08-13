@@ -14,6 +14,7 @@ namespace Brotkrueml\FormRateLimit\Tests\Unit\Event;
 use Brotkrueml\FormRateLimit\Domain\Dto\Options;
 use Brotkrueml\FormRateLimit\Event\RateLimitExceededEvent;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ServerRequestInterface;
 
 final class RateLimitExceededEventTest extends TestCase
 {
@@ -22,6 +23,8 @@ final class RateLimitExceededEventTest extends TestCase
      */
     public function valuesFromGettersReturnedCorrectly(): void
     {
+        $requestStub = $this->createStub(ServerRequestInterface::class);
+
         $subject = new RateLimitExceededEvent(
             'mypage-42',
             new Options(
@@ -29,12 +32,14 @@ final class RateLimitExceededEventTest extends TestCase
                 3,
                 'sliding_window',
                 []
-            )
+            ),
+            $requestStub
         );
 
         self::assertSame('mypage-42', $subject->getFormIdentifier());
         self::assertSame('1 hour', $subject->getInterval());
         self::assertSame(3, $subject->getLimit());
         self::assertSame('sliding_window', $subject->getPolicy());
+        self::assertSame($requestStub, $subject->getRequest());
     }
 }

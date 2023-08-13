@@ -25,17 +25,22 @@ limit: add a log entry, send an email, inform a third-party system, etc.
 The event :php:`\Brotkrueml\FormRateLimit\Event\RateLimitExceededEvent`
 provides the following methods:
 
-:php:`->getFormIdentifier()`
+:php:`->getFormIdentifier(): string`
    Returns the form identifier.
 
-:php:`->getInterval()`
+:php:`->getInterval(): string`
    Returns the configured :ref:`interval <options-interval>`.
 
-:php:`->getLimit()`
+:php:`->getLimit(): int`
    Returns the configured :ref:`limit <options-limit>`.
 
-:php:`->getPolicy()`
+:php:`->getPolicy(): string`
    Returns the configured :ref:`policy <options-policy>`.
+
+:php:`->getRequest(): \Psr\Http\Message\ServerRequestInterface`
+   .. versionadded:: 1.3.0
+
+   Returns the PSR-7 request object.
 
 Example
 -------

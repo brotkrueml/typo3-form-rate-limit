@@ -12,18 +12,22 @@ declare(strict_types=1);
 namespace Brotkrueml\FormRateLimit\Event;
 
 use Brotkrueml\FormRateLimit\Domain\Dto\Options;
+use Psr\Http\Message\ServerRequestInterface;
 
 final class RateLimitExceededEvent
 {
     private string $formIdentifier;
     private Options $options;
+    private ServerRequestInterface $request;
 
     public function __construct(
         string $formIdentifier,
-        Options $options
+        Options $options,
+        ServerRequestInterface $request
     ) {
         $this->formIdentifier = $formIdentifier;
         $this->options = $options;
+        $this->request = $request;
     }
 
     public function getFormIdentifier(): string
@@ -44,5 +48,10 @@ final class RateLimitExceededEvent
     public function getPolicy(): string
     {
         return $this->options->getPolicy();
+    }
+
+    public function getRequest(): ServerRequestInterface
+    {
+        return $this->request;
     }
 }
