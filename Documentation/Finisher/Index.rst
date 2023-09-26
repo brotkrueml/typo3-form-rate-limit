@@ -19,8 +19,10 @@ limiter that TYPO3 Core uses to limit the number of incorrect backend logins.
 
 .. tip::
    The state of a rate limit for a restriction combination is currently stored
-   in the file system. To clean up the files and free disk storage a
-   :ref:`command <command>` is available.
+   in the :file:`var/form_rate_limit/` folder. This folder should be shared between
+   releases in deployment workflows accordingly.
+   
+   To clean up the files and free disk storage a :ref:`command <command>` is available.
 
 
 Example
