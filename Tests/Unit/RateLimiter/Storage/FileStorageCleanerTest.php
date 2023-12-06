@@ -114,6 +114,6 @@ final class FileStorageCleanerTest extends TestCase
         $data = [
             'expiry' => $expiry,
         ];
-        \file_put_contents($filePath, \json_encode($data, \JSON_THROW_ON_ERROR));
+        \file_put_contents($filePath, \serialize($data));
     }
 }

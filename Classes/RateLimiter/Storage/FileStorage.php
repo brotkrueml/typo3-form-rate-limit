@@ -39,7 +39,7 @@ final class FileStorage implements StorageInterface
 
         \file_put_contents(
             $this->getFilePath($limiterState->getId()),
-            \json_encode($content, \JSON_THROW_ON_ERROR)
+            \serialize($content)
         );
     }
 
@@ -55,12 +55,8 @@ final class FileStorage implements StorageInterface
             return null;
         }
 
-        try {
-            /** @var array{state: string, expiry: int} $data */
-            $data = \json_decode($content, true, 512, \JSON_THROW_ON_ERROR);
-        } catch (\JsonException $e) {
-            return null;
-        }
+        /** @var array{state: string, expiry: int} $data */
+        $data = \unserialize($content);
 
         $state = \unserialize($data['state'], [
             'allowed_classes' => [Window::class, SlidingWindow::class],

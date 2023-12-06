@@ -54,17 +54,13 @@ class FileStorageCleaner
         $this->count->incrementTotal();
 
         $content = \file_get_contents($file->getPathname());
+
         if ($content === false) {
             $this->count->incrementErroneous();
             return;
         }
-        try {
-            /** @var array{state: string, expiry: int} $data */
-            $data = \json_decode($content, true, 512, \JSON_THROW_ON_ERROR);
-        } catch (\JsonException $e) {
-            $this->count->incrementErroneous();
-            return;
-        }
+
+        $data = \unserialize($content);
 
         if ($data['expiry'] >= \time()) {
             return;
