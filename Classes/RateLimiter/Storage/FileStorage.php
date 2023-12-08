@@ -39,7 +39,7 @@ final class FileStorage implements StorageInterface
 
         \file_put_contents(
             $this->getFilePath($limiterState->getId()),
-            \json_encode($content, \JSON_THROW_ON_ERROR)
+            \serialize($content)
         );
     }
 
@@ -56,10 +56,18 @@ final class FileStorage implements StorageInterface
         }
 
         try {
+            // Until version 1.3.0 the data was stored JSON-encoded
+            // For those legacy data we try to decode JSON.
+            // See also: https://github.com/brotkrueml/typo3-form-rate-limit/issues/5
+            // @todo Remove the json_decode fallback with version 2.0.0
             /** @var array{state: string, expiry: int} $data */
             $data = \json_decode($content, true, 512, \JSON_THROW_ON_ERROR);
         } catch (\JsonException $e) {
-            return null;
+            // Here we have the new serialized data (hopefully)
+            $data = @\unserialize($content);
+            if (! \is_array($data)) {
+                return null;
+            }
         }
 
         $state = \unserialize($data['state'], [

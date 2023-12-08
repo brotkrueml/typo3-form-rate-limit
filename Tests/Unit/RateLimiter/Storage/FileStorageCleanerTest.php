@@ -94,10 +94,28 @@ final class FileStorageCleanerTest extends TestCase
     /**
      * @test
      */
+    public function withSomeLegacyFilesExpiryInThePast(): void
+    {
+        $this->storeLegacyFileInStorage(\time() - 10);
+        $this->storeLegacyFileInStorage(\time() - 1);
+        $this->storeLegacyFileInStorage(\time());
+        $this->storeLegacyFileInStorage(\time() + 800);
+        $this->storeLegacyFileInStorage(\time() + 900);
+
+        $actual = $this->subject->cleanUp();
+
+        self::assertSame(5, $actual->getTotal());
+        self::assertSame(2, $actual->getDeleted());
+        self::assertSame(0, $actual->getErroneous());
+    }
+
+    /**
+     * @test
+     */
     public function withSomeErroneousFiles(): void
     {
-        \file_put_contents(tempnam(self::STORAGE_PATH, 'frl_'), 'some content');
-        \file_put_contents(tempnam(self::STORAGE_PATH, 'frl_'), 'another content');
+        \file_put_contents(\tempnam(self::STORAGE_PATH, 'frl_'), 'some content');
+        \file_put_contents(\tempnam(self::STORAGE_PATH, 'frl_'), 'another content');
         $this->storeFileInStorage(\time() + 800);
         $this->storeFileInStorage(\time() + 900);
 
@@ -110,7 +128,16 @@ final class FileStorageCleanerTest extends TestCase
 
     private function storeFileInStorage(int $expiry): void
     {
-        $filePath = tempnam(self::STORAGE_PATH, 'frl_');
+        $filePath = \tempnam(self::STORAGE_PATH, 'frl_');
+        $data = [
+            'expiry' => $expiry,
+        ];
+        \file_put_contents($filePath, \serialize($data));
+    }
+
+    private function storeLegacyFileInStorage(int $expiry): void
+    {
+        $filePath = \tempnam(self::STORAGE_PATH, 'frl_');
         $data = [
             'expiry' => $expiry,
         ];
