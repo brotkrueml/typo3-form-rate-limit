@@ -40,7 +40,7 @@ provides the following methods:
 :php:`->getRequest(): \Psr\Http\Message\ServerRequestInterface`
    .. versionadded:: 1.3.0
 
-   Returns the PSR-7 request object.
+   Returns the :ref:`PSR-7 request object <t3coreapi:typo3-request>`.
 
 Example
 -------
