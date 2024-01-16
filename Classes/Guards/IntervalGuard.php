@@ -30,6 +30,8 @@ final class IntervalGuard
         }
 
         if (@\DateInterval::createFromDateString($interval) === false) {
+            // @todo Remove check and exception when compatibility of PHP >= 8.3
+            // @see https://www.php.net/manual/de/class.datemalformedintervalstringexception.php
             throw new \InvalidArgumentException(
                 \sprintf(
                     'Interval is not valid, "%s" given!',

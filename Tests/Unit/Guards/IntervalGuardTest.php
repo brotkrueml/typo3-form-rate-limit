@@ -55,12 +55,25 @@ final class IntervalGuardTest extends TestCase
             'expectedMessage' => 'Interval must be a string!',
             'expectedCode' => 1671448703,
         ];
+    }
 
-        yield 'interval is an invalid string' => [
-            'interval' => 'This is invalid',
-            'expectedMessage' => 'Interval is not valid, "This is invalid" given!',
-            'expectedCode' => 1671448704,
-        ];
+    /**
+     * @test
+     *
+     * @todo Remove when compatibility of PHP >= 8.3
+     * @see https://www.php.net/manual/de/class.datemalformedintervalstringexception.php
+     */
+    public function guardThrowsExceptionOnInvalidIntervalWhenCreating(): void
+    {
+        if (\version_compare(\PHP_VERSION, '8.3.0', '>=')) {
+            self::markTestSkipped();
+        }
+
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Interval is not valid, "This is invalid" given!');
+        $this->expectExceptionCode(1671448704);
+
+        $this->subject->guard('This is invalid');
     }
 
     /**
