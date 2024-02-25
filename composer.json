@@ -34,8 +34,6 @@
         "tomasvotruba/cognitive-complexity": "^0.2.3",
         "typo3/cms-install": "^11.5.3 || ^12.4 || ^13.0"
     },
-    "minimum-stability": "RC",
-    "prefer-stable": true,
     "autoload": {
         "psr-4": {
             "Brotkrueml\\FormRateLimit\\": "Classes"
