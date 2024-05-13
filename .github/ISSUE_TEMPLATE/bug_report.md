@@ -22,10 +22,10 @@ If applicable, add screenshots to help explain your problem.
 
 ### Environment
 
-- Form Rate Limit version(s): [e.g. 1.0.0]
-- TYPO3 version(s): [e.g. 11.5.21, 12.1.3]
+- Form Rate Limit version(s): [e.g. 1.6.0]
+- TYPO3 version(s): [e.g. 11.5.36, 12.4.14]
 - Is your TYPO3 installation set up with Composer (Composer Mode): [yes, no]
-- OS: [e.g. OSX 10.13.4, Windows 10, Debian 11]
+- OS: [e.g. OSX 10.13.4, Windows 11, Debian 12]
 
 ### Possible Solution
 
