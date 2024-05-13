@@ -25,27 +25,7 @@ You can also install the extension from the `TYPO3 Extension Repository (TER)`_.
 See :ref:`t3start:extensions_legacy_management` for a manual how to
 install an extension.
 
+Then continue with the :ref:`configuration <configuration>`.
+
+
 .. _TYPO3 Extension Repository (TER): https://extensions.typo3.org/extension/form_rate_limit
-
-
-.. _include-static-typoscript:
-
-Preparation: Include static TypoScript
-======================================
-
-The extension ships some TypoScript code which needs to be included.
-
-#. Switch to the root page of your site.
-
-#. Switch to the :guilabel:`Template module` and select :guilabel:`Info/Modify`.
-
-#. Press the link :guilabel:`Edit the whole template record` and switch to the
-   tab :guilabel:`Includes`.
-
-#. Select :guilabel:`Form Rate Limit (form_rate_limit)` from the
-   available items at the field :guilabel:`Include static (from extensions):`
-
-.. figure:: /Images/include-static-template.png
-   :alt: Include static TypoScript
-
-   Include static TypoScript
