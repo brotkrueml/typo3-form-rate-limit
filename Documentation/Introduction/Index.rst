@@ -22,16 +22,16 @@ can be restricted to, for example:
 If the limit is exceeded, a customizable error is displayed.
 
 
-Release Management
+Release management
 ==================
 
 This extension uses `semantic versioning`_ which basically means for you, that
 
-*  Bugfix updates (e.g. 1.0.0 => 1.0.1) just includes small bug fixes or
+*  Bugfix updates (for example, 1.0.0 => 1.0.1) just includes small bug fixes or
    security relevant stuff without breaking changes.
-*  Minor updates (e.g. 1.0.0 => 1.1.0) includes new features and smaller tasks
-   without breaking changes.
-*  Major updates (e.g. 1.0.0 => 2.0.0) breaking changes which can be
+*  Minor updates (for example, 1.0.0 => 1.1.0) includes new features and smaller
+   tasks without breaking changes.
+*  Major updates (for example, 1.0.0 => 2.0.0) breaking changes which can be
    refactorings, features or bug fixes.
 
 .. _semantic versioning: https://semver.org/
