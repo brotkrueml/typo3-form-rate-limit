@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.0] - 2024-05-13
+
 ### Added
 - Support for site sets in TYPO3 v13
 
@@ -43,7 +45,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Initial release
 
-[Unreleased]: https://github.com/brotkrueml/typo3-form-rate-limit/compare/v1.5.0...HEAD
+[Unreleased]: https://github.com/brotkrueml/typo3-form-rate-limit/compare/v1.6.0...HEAD
+[1.6.0]: https://github.com/brotkrueml/typo3-form-rate-limit/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/brotkrueml/typo3-form-rate-limit/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/brotkrueml/typo3-form-rate-limit/compare/v1.3.1...v1.4.0
 [1.3.1]: https://github.com/brotkrueml/typo3-form-rate-limit/compare/v1.3.0...v1.3.1
