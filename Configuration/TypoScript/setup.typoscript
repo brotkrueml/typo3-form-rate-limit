@@ -1,7 +1,1 @@
-plugin.tx_form {
-  settings {
-    yamlConfigurations {
-      1671440351 = EXT:form_rate_limit/Configuration/Yaml/FormSetup.yaml
-    }
-  }
-}
+@import "EXT:form_rate_limit/Configuration/Sets/FormRateLimit/setup.typoscript"
