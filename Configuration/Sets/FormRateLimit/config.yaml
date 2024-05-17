@@ -1,5 +1,5 @@
 name: brotkrueml/form-rate-limit
-label: CodeHighlight
+label: Form Rate Limit
 
 dependencies:
   - typo3/form
