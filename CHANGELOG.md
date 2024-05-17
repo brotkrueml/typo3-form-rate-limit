@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.6.1] - 2024-05-17
+
+### Fixed
+- Wrong site set label (#8), thanks to @ErHaWeb
+
 ## [1.6.0] - 2024-05-13
 
 ### Added
@@ -45,7 +50,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Initial release
 
-[Unreleased]: https://github.com/brotkrueml/typo3-form-rate-limit/compare/v1.6.0...HEAD
+[Unreleased]: https://github.com/brotkrueml/typo3-form-rate-limit/compare/v1.6.1...HEAD
+[1.6.1]: https://github.com/brotkrueml/typo3-form-rate-limit/compare/v1.6.0...v1.6.1
 [1.6.0]: https://github.com/brotkrueml/typo3-form-rate-limit/compare/v1.5.0...v1.6.0
 [1.5.0]: https://github.com/brotkrueml/typo3-form-rate-limit/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/brotkrueml/typo3-form-rate-limit/compare/v1.3.1...v1.4.0
