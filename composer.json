@@ -18,9 +18,9 @@
         "php": ">=7.4",
         "ext-json": "*",
         "symfony/rate-limiter": "^5.4 || ^6.4 || ^7.0",
-        "typo3/cms-core": "^11.5.3 || ^12.4 || ^13.1",
-        "typo3/cms-fluid": "^11.5.3 || ^12.4 || ^13.1",
-        "typo3/cms-form": "^11.5.3 || ^12.4 || ^13.1"
+        "typo3/cms-core": "^11.5.3 || ^12.4 || ^13.2",
+        "typo3/cms-fluid": "^11.5.3 || ^12.4 || ^13.2",
+        "typo3/cms-form": "^11.5.3 || ^12.4 || ^13.2"
     },
     "require-dev": {
         "brotkrueml/coding-standards": "~3.0.0",
@@ -32,7 +32,7 @@
         "symfony/yaml": "^5.4 || ^6.4 || ^7.0",
         "symplify/phpstan-rules": "^13.0",
         "tomasvotruba/cognitive-complexity": "^0.2.3",
-        "typo3/cms-install": "^11.5.3 || ^12.4 || ^13.1"
+        "typo3/cms-install": "^11.5.3 || ^12.4 || ^13.2"
     },
     "autoload": {
         "psr-4": {
