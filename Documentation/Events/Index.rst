@@ -87,7 +87,11 @@ Registration of the event listener:
    :caption: EXT:your_extension/Configuration/Services.yaml
 
    services:
+      # Place here the default dependency injection configuration
+
      YourVendor\YourExtension\EventListener\FormRateLimitExceededLogger:
        tags:
          - name: event.listener
            identifier: 'yourFormRateLimitExceededLogger'
+
+Read :ref:`how to configure dependency injection in extensions <t3coreapi:dependency-injection-in-extensions>`.
