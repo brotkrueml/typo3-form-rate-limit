@@ -37,7 +37,6 @@ return static function(ContainerConfigurator $configurator) {
         ->tag('console.command', [
             'command' => 'formratelimit:cleanupexpiredstorageentries',
             'description' => 'Clean up expired storage entries of form_rate_limit extension',
-            'schedulable' => false,
         ]);
 
     $services->set(PreventLanguagePackDownload::class)
