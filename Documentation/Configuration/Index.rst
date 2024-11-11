@@ -44,7 +44,7 @@ The extension ships some TypoScript code which needs to be included.
 Site sets (TYPO3 v13)
 =====================
 
-This extension provides support for :ref:`site sets <t3coreapi_main:site-sets>`
+This extension provides support for :ref:`site sets <t3coreapi:site-sets>`
 introduced with TYPO3 v13.1.
 
 Add :yaml:`brotkrueml/form-rate-limit` as dependency to the configuration of
