@@ -26,4 +26,4 @@ can call it on the console with:
 
          typo3/sysext/core/bin/typo3 formratelimit:cleanupexpiredstorageentries
 
-You can add a cron job to run regularly.
+To run the command regularly you can add a cron job or run it from the TYPO3 scheduler.
