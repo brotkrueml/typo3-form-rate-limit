@@ -11,6 +11,12 @@ and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0
 `Unreleased <https://github.com/brotkrueml/typo3-form-rate-limit/compare/v1.6.1...HEAD>`_
 ---------------------------------------------------------------------------------------------
 
+Added
+^^^^^
+
+
+* Allow cleanup command in scheduler (#11), thanks to @RKlingler
+
 `1.6.1 <https://github.com/brotkrueml/typo3-form-rate-limit/compare/v1.6.0...v1.6.1>`_ - 2024-05-17
 -------------------------------------------------------------------------------------------------------
 

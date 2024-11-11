@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Allow cleanup command in scheduler (#11), thanks to @RKlingler
+
 ## [1.6.1] - 2024-05-17
 
 ### Fixed
