@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Form finisher not visible in TYPO3 v13 using site sets
+
 ## [1.7.0] - 2024-11-11
 
 ### Added

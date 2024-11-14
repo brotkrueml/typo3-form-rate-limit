@@ -1,7 +1,0 @@
-module.tx_form {
-  settings {
-    yamlConfigurations {
-      1671440351 = EXT:form_rate_limit/Configuration/Yaml/FormSetup.yaml
-    }
-  }
-}

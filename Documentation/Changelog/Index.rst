@@ -11,6 +11,12 @@ and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0
 `Unreleased <https://github.com/brotkrueml/typo3-form-rate-limit/compare/v1.7.0...HEAD>`_
 ---------------------------------------------------------------------------------------------
 
+Fixed
+^^^^^
+
+
+* Form finisher not visible in TYPO3 v13 using site sets
+
 `1.7.0 <https://github.com/brotkrueml/typo3-form-rate-limit/compare/v1.6.1...v1.7.0>`_ - 2024-11-11
 -------------------------------------------------------------------------------------------------------
 
