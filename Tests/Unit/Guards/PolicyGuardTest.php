@@ -27,16 +27,16 @@ final class PolicyGuardTest extends TestCase
      * @test
      * @dataProvider providerForInvalidPolicies
      */
-    public function guardThrowsExceptionOnInvalidPolicy($interval, string $expectedMessage, int $expectedCode): void
+    public function guardThrowsExceptionOnInvalidPolicy($policy, string $expectedMessage, int $expectedCode): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage($expectedMessage);
         $this->expectExceptionCode($expectedCode);
 
-        $this->subject->guard($interval);
+        $this->subject->guard($policy);
     }
 
-    public function providerForInvalidPolicies(): iterable
+    public static function providerForInvalidPolicies(): iterable
     {
         yield 'policy is null' => [
             'policy' => null,

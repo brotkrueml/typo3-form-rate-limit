@@ -36,10 +36,10 @@ final class LimitGuardTest extends TestCase
         $this->subject->guard($limit);
     }
 
-    public function providerForInvalidLimits(): iterable
+    public static function providerForInvalidLimits(): iterable
     {
         yield 'limit is null' => [
-            'interval' => null,
+            'limit' => null,
             'expectedMessage' => 'Limit must be set!',
             'expectedCode' => 1671449026,
         ];
@@ -51,19 +51,19 @@ final class LimitGuardTest extends TestCase
         ];
 
         yield 'limit is not numeric' => [
-            'interval' => '42abc',
+            'limit' => '42abc',
             'expectedMessage' => 'Limit must be numeric!',
             'expectedCode' => 1671449027,
         ];
 
         yield 'limit is a negative numeric string' => [
-            'interval' => '-42',
+            'limit' => '-42',
             'expectedMessage' => 'Limit must be greater than 0!',
             'expectedCode' => 1671449028,
         ];
 
         yield 'limit is 0' => [
-            'interval' => 0,
+            'limit' => 0,
             'expectedMessage' => 'Limit must be greater than 0!',
             'expectedCode' => 1671449028,
         ];

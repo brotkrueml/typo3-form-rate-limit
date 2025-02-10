@@ -36,7 +36,7 @@ final class IntervalGuardTest extends TestCase
         $this->subject->guard($interval);
     }
 
-    public function providerForInvalidIntervals(): iterable
+    public static function providerForInvalidIntervals(): iterable
     {
         yield 'interval is null' => [
             'interval' => null,

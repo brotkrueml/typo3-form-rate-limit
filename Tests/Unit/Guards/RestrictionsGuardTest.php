@@ -36,7 +36,7 @@ final class RestrictionsGuardTest extends TestCase
         $this->subject->guard($restrictions);
     }
 
-    public function providerForInvalidRestrictions(): iterable
+    public static function providerForInvalidRestrictions(): iterable
     {
         yield 'restrictions is null' => [
             'restrictions' => null,
