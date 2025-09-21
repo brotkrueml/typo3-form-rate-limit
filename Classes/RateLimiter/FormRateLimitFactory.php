@@ -40,7 +40,7 @@ final readonly class FormRateLimitFactory
     }
 
     /**
-     * @param string[] $restrictions
+     * @param list<string> $restrictions
      */
     private function buildKey(array $restrictions, string $formIdentifier, string $ipAddress): string
     {
