@@ -90,9 +90,9 @@ jobs:
       - name: Check coding standards
         run: |
           .Build/bin/ecs check --no-progress-bar
-      - name: Run phpstan
+      - name: Run static code analysis
         run: |
-          make phpstan
+          make stan
       - name: Run rector
         run: |
-          make rector-dry
+          make rector-checl
