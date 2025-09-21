@@ -29,9 +29,11 @@ cs-check: cs-php-check ## Only check coding standards
 
 cs-php: vendor ## Check and fix PHP coding standards
 	.Build/bin/ecs check --fix
+	.Build/bin/ecs check --fix --config=ecs.docs.php
 
 cs-php-check: vendor ## Only check PHP coding standards
 	.Build/bin/ecs check
+	.Build/bin/ecs check --config=ecs.docs.php
 
 docs: ## Render documentation
 	docker run --rm --pull always -v "$(shell pwd)":/project -t ghcr.io/typo3-documentation/render-guides:latest --config=Documentation
