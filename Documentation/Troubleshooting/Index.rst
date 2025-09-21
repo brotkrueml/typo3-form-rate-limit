@@ -9,7 +9,8 @@ Troubleshooting
 -  **The finisher preset identified by "RateLimit" could not be found, or the
    implementationClassName was not specified.**:
 
-   Please include the :ref:`TypoScript sets <include-typoscript-sets>`.
+   Please include the :ref:`TypoScript configuration <configuration>` shipped
+   with this extension.
 
 -  **Tried resolving a template file for controller action "Standard->index" in
    format ".html", but none of the paths contained the expected template file
