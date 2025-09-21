@@ -29,14 +29,14 @@ final readonly class FormRateLimitFactory
     {
         $config = [
             'id' => 'form-rate-limit',
-            'interval' => $options->getInterval(),
-            'limit' => $options->getLimit(),
-            'policy' => $options->getPolicy(),
+            'interval' => $options->interval,
+            'limit' => $options->limit,
+            'policy' => $options->policy,
         ];
 
         $limiterFactory = new RateLimiterFactory($config, $this->storage);
 
-        return $limiterFactory->create($this->buildKey($options->getRestrictions(), $formIdentifier, $ipAddress));
+        return $limiterFactory->create($this->buildKey($options->restrictions, $formIdentifier, $ipAddress));
     }
 
     /**

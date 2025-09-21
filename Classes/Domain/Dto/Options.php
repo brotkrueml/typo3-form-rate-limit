@@ -17,35 +17,12 @@ namespace Brotkrueml\FormRateLimit\Domain\Dto;
 final readonly class Options
 {
     /**
-     * @param string[] $restrictions
+     * @param list<string> $restrictions
      */
     public function __construct(
-        private string $interval,
-        private int $limit,
-        private string $policy,
-        private array $restrictions,
+        public string $interval,
+        public int $limit,
+        public string $policy,
+        public array $restrictions,
     ) {}
-
-    public function getInterval(): string
-    {
-        return $this->interval;
-    }
-
-    public function getLimit(): int
-    {
-        return $this->limit;
-    }
-
-    public function getPolicy(): string
-    {
-        return $this->policy;
-    }
-
-    /**
-     * @return string[]
-     */
-    public function getRestrictions(): array
-    {
-        return $this->restrictions;
-    }
 }

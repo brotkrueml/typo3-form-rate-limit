@@ -29,17 +29,17 @@ final readonly class RateLimitExceededEvent
 
     public function getInterval(): string
     {
-        return $this->options->getInterval();
+        return $this->options->interval;
     }
 
     public function getLimit(): int
     {
-        return $this->options->getLimit();
+        return $this->options->limit;
     }
 
     public function getPolicy(): string
     {
-        return $this->options->getPolicy();
+        return $this->options->policy;
     }
 
     public function getRequest(): ServerRequestInterface

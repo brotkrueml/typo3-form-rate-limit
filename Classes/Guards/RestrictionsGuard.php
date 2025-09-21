@@ -18,7 +18,7 @@ final class RestrictionsGuard
 {
     /**
      * @param string|int|array<int,string>|null $restrictions
-     * @return string[]
+     * @return list<string>
      */
     public function guard($restrictions): array
     {
