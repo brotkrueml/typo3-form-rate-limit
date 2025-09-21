@@ -35,10 +35,10 @@ your site package:
      - brotkrueml/form-rate-limit
 
 
-.. _include-static-typoscript:
+.. _include-typoscript-sets:
 
-Include static TypoScript
-=========================
+Include TypoScript sets
+=======================
 
 The extension ships some TypoScript code which needs to be included.
 
