@@ -26,11 +26,6 @@ use TYPO3\CMS\Form\Domain\Finishers\AbstractFinisher;
 
 final class RateLimitFinisher extends AbstractFinisher
 {
-    private readonly IntervalGuard $intervalGuard;
-    private readonly LimitGuard $limitGuard;
-    private readonly PolicyGuard $policyGuard;
-    private readonly RestrictionsGuard $restrictionGuard;
-
     /**
      * @var array<string, string|int|string[]>
      */
@@ -48,12 +43,11 @@ final class RateLimitFinisher extends AbstractFinisher
     public function __construct(
         private readonly FormRateLimitFactory $rateLimitFactory,
         private readonly EventDispatcherInterface $eventDispatcher,
-    ) {
-        $this->intervalGuard = new IntervalGuard();
-        $this->limitGuard = new LimitGuard();
-        $this->policyGuard = new PolicyGuard();
-        $this->restrictionGuard = new RestrictionsGuard();
-    }
+        private readonly IntervalGuard $intervalGuard = new IntervalGuard(),
+        private readonly LimitGuard $limitGuard = new LimitGuard(),
+        private readonly PolicyGuard $policyGuard = new PolicyGuard(),
+        private readonly RestrictionsGuard $restrictionGuard = new RestrictionsGuard(),
+    ) {}
 
     protected function executeInternal(): ?string
     {
