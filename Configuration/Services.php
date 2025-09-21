@@ -32,9 +32,4 @@ return static function(ContainerConfigurator $configurator) {
 
     $services->set(FormRateLimitFactory::class)
         ->arg('$storage', service(FileStorage::class));
-
-    $services->set(PreventLanguagePackDownload::class)
-        ->tag('event.listener', [
-            'identifier' => 'form-rate-limit/prevent-language-pack-download',
-        ]);
 };

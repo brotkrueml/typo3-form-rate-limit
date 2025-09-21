@@ -12,9 +12,13 @@ declare(strict_types=1);
 namespace Brotkrueml\FormRateLimit\EventListener;
 
 use Brotkrueml\FormRateLimit\Extension;
+use TYPO3\CMS\Core\Attribute\AsEventListener;
 use TYPO3\CMS\Install\Service\Event\ModifyLanguagePacksEvent;
 
-final class PreventLanguagePackDownload
+#[AsEventListener(
+    identifier: 'form-rate-limit/prevent-language-pack-download',
+)]
+final readonly class PreventLanguagePackDownload
 {
     public function __invoke(ModifyLanguagePacksEvent $event): void
     {
