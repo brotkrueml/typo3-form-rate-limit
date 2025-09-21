@@ -14,7 +14,7 @@ namespace Brotkrueml\FormRateLimit\Guards;
 /**
  * @internal
  */
-final class PolicyGuard
+final readonly class PolicyGuard
 {
     private const ALLOWED_POLICIES = ['fixed_window', 'sliding_window'];
 

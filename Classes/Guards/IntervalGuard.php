@@ -14,7 +14,7 @@ namespace Brotkrueml\FormRateLimit\Guards;
 /**
  * @internal
  */
-final class IntervalGuard
+final readonly class IntervalGuard
 {
     /**
      * @param string|int|array{}|null $interval
