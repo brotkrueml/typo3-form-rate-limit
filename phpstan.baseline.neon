@@ -1,26 +1,49 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Method Brotkrueml\\\\FormRateLimit\\\\Domain\\\\Finishers\\\\RateLimitFinisher\\:\\:renderExceededMessage\\(\\) should return string but returns mixed\\.$#"
+			message: '#^Call to an undefined method TYPO3\\CMS\\Fluid\\View\\StandaloneView\:\:assignMultiple\(\)\.$#'
+			identifier: method.notFound
 			count: 1
 			path: Classes/Domain/Finishers/RateLimitFinisher.php
 
 		-
-			message: "#^\"@\\\\DateInterval\\:\\:createFromDateString\\(\\$interval\\)\" is forbidden to use$#"
+			message: '#^Call to an undefined method TYPO3\\CMS\\Fluid\\View\\StandaloneView\:\:render\(\)\.$#'
+			identifier: method.notFound
+			count: 1
+			path: Classes/Domain/Finishers/RateLimitFinisher.php
+
+		-
+			message: '#^"@\\DateInterval\:\:createFromDateString\(\$interval\)" is forbidden to use$#'
+			identifier: symplify.forbiddenNode
 			count: 1
 			path: Classes/Guards/IntervalGuard.php
 
 		-
-			message: "#^\"@\\\\unserialize\\(\\$content\\)\" is forbidden to use$#"
+			message: '#^Call to function is_string\(\) with string will always evaluate to true\.$#'
+			identifier: function.alreadyNarrowedType
+			count: 1
+			path: Classes/Guards/RestrictionsGuard.php
+
+		-
+			message: '#^"@\\unserialize\(\$content\)" is forbidden to use$#'
+			identifier: symplify.forbiddenNode
 			count: 1
 			path: Classes/RateLimiter/Storage/FileStorage.php
 
 		-
-			message: "#^\"@\\\\unserialize\\(\\$content\\)\" is forbidden to use$#"
+			message: '#^Parameter \#1 \$variable_representation of function unserialize expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/RateLimiter/Storage/FileStorage.php
+
+		-
+			message: '#^"@\\unserialize\(\$content\)" is forbidden to use$#'
+			identifier: symplify.forbiddenNode
 			count: 1
 			path: Classes/RateLimiter/Storage/FileStorageCleaner.php
 
 		-
-			message: "#^Cognitive complexity for \"Brotkrueml\\\\FormRateLimit\\\\RateLimiter\\\\Storage\\\\FileStorageCleaner\\:\\:processFile\\(\\)\" is 8, keep it under 6$#"
+			message: '#^Cognitive complexity for "Brotkrueml\\FormRateLimit\\RateLimiter\\Storage\\FileStorageCleaner\:\:processFile\(\)" is 8, keep it under 6$#'
+			identifier: complexity.functionLike
 			count: 1
 			path: Classes/RateLimiter/Storage/FileStorageCleaner.php
