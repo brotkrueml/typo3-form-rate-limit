@@ -14,13 +14,13 @@ can call it on the console with:
 
 .. tabs::
 
-   .. group-tab:: Composer-based installation
+   .. group-tab:: Composer mode
 
       .. code-block:: bash
 
          vendor/bin/typo3 formratelimit:cleanupexpiredstorageentries
 
-   .. group-tab:: Legacy installation
+   .. group-tab:: Classic mode
 
       .. code-block:: bash
 

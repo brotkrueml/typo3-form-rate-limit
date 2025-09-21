@@ -20,7 +20,7 @@ Composer-based TYPO3 project root, just type:
 
 and the recent stable version will be installed.
 
-In legacy installations, you can also install the extension from the
+In classic mode, you can also install the extension from the
 `TYPO3 Extension Repository (TER)`_.
 
 Then continue with the :ref:`configuration <configuration>`.
