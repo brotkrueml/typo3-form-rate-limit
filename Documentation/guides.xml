@@ -15,8 +15,8 @@
     />
     <project
         title="Form Rate Limit"
-        release="1.7.1"
-        version="1.7"
+        release="2.0.0-dev"
+        version="2.0"
         copyright="since 2022 by Chris Müller"
     />
 </guides>
