@@ -33,12 +33,6 @@ return static function(ContainerConfigurator $configurator) {
     $services->set(FormRateLimitFactory::class)
         ->arg('$storage', service(FileStorage::class));
 
-    $services->set(CleanUpExpiredStorageEntriesCommand::class)
-        ->tag('console.command', [
-            'command' => 'formratelimit:cleanupexpiredstorageentries',
-            'description' => 'Clean up expired storage entries of form_rate_limit extension',
-        ]);
-
     $services->set(PreventLanguagePackDownload::class)
         ->tag('event.listener', [
             'identifier' => 'form-rate-limit/prevent-language-pack-download',

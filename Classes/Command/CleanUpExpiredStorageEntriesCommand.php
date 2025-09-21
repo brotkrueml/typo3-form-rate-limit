@@ -12,11 +12,16 @@ declare(strict_types=1);
 namespace Brotkrueml\FormRateLimit\Command;
 
 use Brotkrueml\FormRateLimit\RateLimiter\Storage\FileStorageCleaner;
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
+#[AsCommand(
+    name: 'formratelimit:cleanupexpiredstorageentries',
+    description: 'Clean up expired storage entries of form_rate_limit extension',
+)]
 final class CleanUpExpiredStorageEntriesCommand extends Command
 {
     public function __construct(
