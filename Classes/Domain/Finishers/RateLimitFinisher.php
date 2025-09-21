@@ -47,7 +47,7 @@ final class RateLimitFinisher extends AbstractFinisher
 
     public function __construct(
         private readonly FormRateLimitFactory $rateLimitFactory,
-        private readonly EventDispatcherInterface $eventDispatcher
+        private readonly EventDispatcherInterface $eventDispatcher,
     ) {
         $this->intervalGuard = new IntervalGuard();
         $this->limitGuard = new LimitGuard();
@@ -69,15 +69,15 @@ final class RateLimitFinisher extends AbstractFinisher
         $limiter = $this->rateLimitFactory->createRateLimiter(
             $options,
             $this->finisherContext->getFormRuntime()->getIdentifier(),
-            $normalizedParams->getRemoteAddress()
+            $normalizedParams->getRemoteAddress(),
         );
         if (! $limiter->consume()->isAccepted()) {
             $this->eventDispatcher->dispatch(
                 new RateLimitExceededEvent(
                     $this->finisherContext->getFormRuntime()->getIdentifier(),
                     $options,
-                    $this->finisherContext->getRequest()
-                )
+                    $this->finisherContext->getRequest(),
+                ),
             );
             $this->finisherContext->cancel();
 

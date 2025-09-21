@@ -32,7 +32,7 @@ final class CleanUpExpiredStorageEntriesCommandTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->fileStorageCleanerStub = $this->createStub(FileStorageCleaner::class);
+        $this->fileStorageCleanerStub = self::createStub(FileStorageCleaner::class);
 
         $command = new CleanUpExpiredStorageEntriesCommand($this->fileStorageCleanerStub);
         $this->commandTester = new CommandTester($command);

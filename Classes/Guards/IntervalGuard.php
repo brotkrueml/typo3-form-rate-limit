@@ -35,9 +35,9 @@ final class IntervalGuard
             throw new \InvalidArgumentException(
                 \sprintf(
                     'Interval is not valid, "%s" given!',
-                    $interval
+                    $interval,
                 ),
-                1671448704
+                1671448704,
             );
         }
 

@@ -22,9 +22,8 @@ use Symfony\Component\RateLimiter\Storage\StorageInterface;
 final class FileStorage implements StorageInterface
 {
     public function __construct(
-        private readonly string $storagePath
-    ) {
-    }
+        private readonly string $storagePath,
+    ) {}
 
     public function save(LimiterStateInterface $limiterState): void
     {
@@ -37,7 +36,7 @@ final class FileStorage implements StorageInterface
 
         \file_put_contents(
             $this->getFilePath($limiterState->getId()),
-            \serialize($content)
+            \serialize($content),
         );
     }
 

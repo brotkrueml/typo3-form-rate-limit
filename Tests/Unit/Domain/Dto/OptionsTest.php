@@ -24,7 +24,7 @@ final class OptionsTest extends TestCase
             '2 hours',
             42,
             'sliding_window',
-            ['__formIdentifier', '{email}']
+            ['__formIdentifier', '{email}'],
         );
 
         self::assertSame('2 hours', $subject->getInterval());

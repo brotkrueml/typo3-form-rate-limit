@@ -20,7 +20,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 final class CleanUpExpiredStorageEntriesCommand extends Command
 {
     public function __construct(
-        private readonly FileStorageCleaner $fileStorageCleaner
+        private readonly FileStorageCleaner $fileStorageCleaner,
     ) {
         parent::__construct();
     }
@@ -39,8 +39,8 @@ final class CleanUpExpiredStorageEntriesCommand extends Command
             \sprintf(
                 '%d expired files were deleted successfully, %d total files were available.',
                 $count->getDeleted(),
-                $count->getTotal()
-            )
+                $count->getTotal(),
+            ),
         );
 
         return Command::SUCCESS;

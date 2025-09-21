@@ -36,9 +36,9 @@ final class PolicyGuard
                 \sprintf(
                     'Policy must be one of the following: %s, "%s" given',
                     \implode(',', self::ALLOWED_POLICIES),
-                    $policy
+                    $policy,
                 ),
-                1671448322
+                1671448322,
             );
         }
 

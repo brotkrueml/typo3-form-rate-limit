@@ -23,9 +23,8 @@ final class Options
         private readonly string $interval,
         private readonly int $limit,
         private readonly string $policy,
-        private readonly array $restrictions
-    ) {
-    }
+        private readonly array $restrictions,
+    ) {}
 
     public function getInterval(): string
     {

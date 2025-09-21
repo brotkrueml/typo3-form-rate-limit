@@ -19,9 +19,8 @@ final class RateLimitExceededEvent
     public function __construct(
         private readonly string $formIdentifier,
         private readonly Options $options,
-        private readonly ServerRequestInterface $request
-    ) {
-    }
+        private readonly ServerRequestInterface $request,
+    ) {}
 
     public function getFormIdentifier(): string
     {

@@ -21,7 +21,7 @@ class FileStorageCleaner
     private readonly CleanerCount $count;
 
     public function __construct(
-        private readonly string $storagePath
+        private readonly string $storagePath,
     ) {
         $this->count = new CleanerCount();
     }

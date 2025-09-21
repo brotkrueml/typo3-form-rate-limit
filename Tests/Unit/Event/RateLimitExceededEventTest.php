@@ -22,7 +22,7 @@ final class RateLimitExceededEventTest extends TestCase
     #[Test]
     public function valuesFromGettersReturnedCorrectly(): void
     {
-        $requestStub = $this->createStub(ServerRequestInterface::class);
+        $requestStub = self::createStub(ServerRequestInterface::class);
 
         $subject = new RateLimitExceededEvent(
             'mypage-42',
@@ -30,9 +30,9 @@ final class RateLimitExceededEventTest extends TestCase
                 '1 hour',
                 3,
                 'sliding_window',
-                []
+                [],
             ),
-            $requestStub
+            $requestStub,
         );
 
         self::assertSame('mypage-42', $subject->getFormIdentifier());

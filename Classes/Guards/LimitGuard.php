@@ -29,7 +29,7 @@ final class LimitGuard
             throw new \InvalidArgumentException('Limit must be numeric!', 1671449027);
         }
 
-        $limit = (int)$limit;
+        $limit = (int) $limit;
         if ($limit < 1) {
             throw new \InvalidArgumentException('Limit must be greater than 0!', 1671449028);
         }
