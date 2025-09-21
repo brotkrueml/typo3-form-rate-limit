@@ -12,6 +12,8 @@ declare(strict_types=1);
 namespace Brotkrueml\FormRateLimit\Tests\Unit\Guards\IntervalGuard;
 
 use Brotkrueml\FormRateLimit\Guards\IntervalGuard;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class IntervalGuardTest extends TestCase
@@ -23,11 +25,9 @@ final class IntervalGuardTest extends TestCase
         $this->subject = new IntervalGuard();
     }
 
-    /**
-     * @test
-     * @dataProvider providerForInvalidIntervals
-     */
-    public function guardThrowsExceptionOnInvalidInterval($interval, string $expectedMessage, int $expectedCode): void
+    #[Test]
+    #[DataProvider('providerForInvalidIntervals')]
+    public function guardThrowsExceptionOnInvalidInterval(int|array|null $interval, string $expectedMessage, int $expectedCode): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage($expectedMessage);
@@ -58,11 +58,10 @@ final class IntervalGuardTest extends TestCase
     }
 
     /**
-     * @test
-     *
      * @todo Remove when compatibility of PHP >= 8.3
      * @see https://www.php.net/manual/de/class.datemalformedintervalstringexception.php
      */
+    #[Test]
     public function guardThrowsExceptionOnInvalidIntervalWhenCreating(): void
     {
         if (\version_compare(\PHP_VERSION, '8.3.0', '>=')) {
@@ -76,9 +75,7 @@ final class IntervalGuardTest extends TestCase
         $this->subject->guard('This is invalid');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function guardReturnsGivenIntervalWhenItIsValid(): void
     {
         $actual = $this->subject->guard('2 hours');

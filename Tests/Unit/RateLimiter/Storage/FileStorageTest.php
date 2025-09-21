@@ -14,6 +14,7 @@ namespace Brotkrueml\FormRateLimit\Tests\Unit\RateLimiter\Storage;
 use Brotkrueml\FormRateLimit\RateLimiter\Storage\FileStorage;
 use Brotkrueml\FormRateLimit\Tests\Fixture\TestLimiter;
 use FilesystemIterator;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\RateLimiter\Policy\SlidingWindow;
 use Symfony\Component\RateLimiter\Policy\Window;
@@ -39,9 +40,7 @@ final class FileStorageTest extends TestCase
         \rmdir(self::STORAGE_PATH);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveAndThenFetchWorkWithWindowCorrectly(): void
     {
         $state = new Window('some-id', 60, 1);
@@ -53,9 +52,7 @@ final class FileStorageTest extends TestCase
         self::assertSame('some-id', $actual->getId());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveAndThenFetchWorkWithFixedWindowCorrectly(): void
     {
         $state = new SlidingWindow('some-id', 60);
@@ -67,9 +64,7 @@ final class FileStorageTest extends TestCase
         self::assertSame('some-id', $actual->getId());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function fetchReturnsNullWhenIdNotAvailable(): void
     {
         $actual = $this->subject->fetch('non-existing-id');
@@ -77,9 +72,7 @@ final class FileStorageTest extends TestCase
         self::assertNull($actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function fetchReturnNullWhenClassIsNotAllowedByUnserialize(): void
     {
         $state = new TestLimiter();
@@ -90,9 +83,7 @@ final class FileStorageTest extends TestCase
         self::assertNull($actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function deleteReallyDeletesTheFile(): void
     {
         $state = new TestLimiter();
@@ -106,9 +97,7 @@ final class FileStorageTest extends TestCase
         self::assertCount(0, $it);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function deleteWithUnknownIdDoesNothing(): void
     {
         $state = new TestLimiter();

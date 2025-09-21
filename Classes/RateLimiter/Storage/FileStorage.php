@@ -21,11 +21,9 @@ use Symfony\Component\RateLimiter\Storage\StorageInterface;
  */
 final class FileStorage implements StorageInterface
 {
-    private string $storagePath;
-
-    public function __construct(string $storagePath)
-    {
-        $this->storagePath = $storagePath;
+    public function __construct(
+        private readonly string $storagePath
+    ) {
     }
 
     public function save(LimiterStateInterface $limiterState): void
@@ -62,7 +60,7 @@ final class FileStorage implements StorageInterface
             // @todo Remove the json_decode fallback with version 2.0.0
             /** @var array{state: string, expiry: int} $data */
             $data = \json_decode($content, true, 512, \JSON_THROW_ON_ERROR);
-        } catch (\JsonException $e) {
+        } catch (\JsonException) {
             // Here we have the new serialized data (hopefully)
             $data = @\unserialize($content);
             if (! \is_array($data)) {

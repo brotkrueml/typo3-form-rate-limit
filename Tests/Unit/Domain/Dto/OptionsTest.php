@@ -12,13 +12,12 @@ declare(strict_types=1);
 namespace Brotkrueml\FormRateLimit\Tests\Unit\Domain\Dto;
 
 use Brotkrueml\FormRateLimit\Domain\Dto\Options;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class OptionsTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function getterReturnCorrectValues(): void
     {
         $subject = new Options(

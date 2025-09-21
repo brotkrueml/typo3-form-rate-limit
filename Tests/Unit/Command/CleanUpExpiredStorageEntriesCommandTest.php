@@ -14,14 +14,14 @@ namespace Brotkrueml\FormRateLimit\Tests\Unit\Command;
 use Brotkrueml\FormRateLimit\Command\CleanUpExpiredStorageEntriesCommand;
 use Brotkrueml\FormRateLimit\Domain\Dto\CleanerCount;
 use Brotkrueml\FormRateLimit\RateLimiter\Storage\FileStorageCleaner;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\MockObject\Stub;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
 
-/**
- * @covers \Brotkrueml\FormRateLimit\Command\CleanUpExpiredStorageEntriesCommand
- */
+#[CoversClass(CleanUpExpiredStorageEntriesCommand::class)]
 final class CleanUpExpiredStorageEntriesCommandTest extends TestCase
 {
     /**
@@ -38,9 +38,7 @@ final class CleanUpExpiredStorageEntriesCommandTest extends TestCase
         $this->commandTester = new CommandTester($command);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function executeReturnsCorrectResultsWithErroneousFiles(): void
     {
         $count = new CleanerCount();
@@ -62,9 +60,7 @@ final class CleanUpExpiredStorageEntriesCommandTest extends TestCase
         self::assertSame(Command::SUCCESS, $this->commandTester->getStatusCode());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function executeReturnsCorrectResultsWithoutErroneousFiles(): void
     {
         $count = new CleanerCount();

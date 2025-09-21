@@ -12,6 +12,8 @@ declare(strict_types=1);
 namespace Brotkrueml\FormRateLimit\Tests\Unit\Guards;
 
 use Brotkrueml\FormRateLimit\Guards\RestrictionsGuard;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class RestrictionsGuardTest extends TestCase
@@ -23,11 +25,9 @@ final class RestrictionsGuardTest extends TestCase
         $this->subject = new RestrictionsGuard();
     }
 
-    /**
-     * @test
-     * @dataProvider providerForInvalidRestrictions
-     */
-    public function guardThrowsExceptionOnInvalidRestrictions($restrictions, string $expectedMessage, int $expectedCode): void
+    #[Test]
+    #[DataProvider('providerForInvalidRestrictions')]
+    public function guardThrowsExceptionOnInvalidRestrictions(string|array|null $restrictions, string $expectedMessage, int $expectedCode): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage($expectedMessage);
@@ -66,9 +66,7 @@ final class RestrictionsGuardTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function guardReturnsGivenRestrictionsWhenItIsValid(): void
     {
         $actual = $this->subject->guard([

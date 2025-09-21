@@ -19,11 +19,9 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 final class CleanUpExpiredStorageEntriesCommand extends Command
 {
-    private FileStorageCleaner $fileStorageCleaner;
-
-    public function __construct(FileStorageCleaner $fileStorageCleaner)
-    {
-        $this->fileStorageCleaner = $fileStorageCleaner;
+    public function __construct(
+        private readonly FileStorageCleaner $fileStorageCleaner
+    ) {
         parent::__construct();
     }
 

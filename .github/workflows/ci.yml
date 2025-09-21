@@ -20,10 +20,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - php-versions: 7.4
-            typo3-versions: ^11
-          - php-versions: 8.0
-            typo3-versions: ^11
           - php-versions: 8.1
             typo3-versions: ^11
           - php-versions: 8.1
@@ -72,7 +68,6 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
       - name: Install composer dependencies
         run: |
-          composer remove symplify/phpstan-rules --dev --no-update
           composer require typo3/cms-core=${{ matrix.typo3-versions }} --no-progress --prefer-dist --optimize-autoloader
       - name: Run PHP linter
         run: |

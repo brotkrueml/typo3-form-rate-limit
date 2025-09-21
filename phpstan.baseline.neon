@@ -1,14 +1,8 @@
 parameters:
 	ignoreErrors:
 		-
-			message: '#^Call to an undefined method TYPO3\\CMS\\Fluid\\View\\StandaloneView\:\:assignMultiple\(\)\.$#'
-			identifier: method.notFound
-			count: 1
-			path: Classes/Domain/Finishers/RateLimitFinisher.php
-
-		-
-			message: '#^Call to an undefined method TYPO3\\CMS\\Fluid\\View\\StandaloneView\:\:render\(\)\.$#'
-			identifier: method.notFound
+			message: '#^Method Brotkrueml\\FormRateLimit\\Domain\\Finishers\\RateLimitFinisher\:\:renderExceededMessage\(\) should return string but returns mixed\.$#'
+			identifier: return.type
 			count: 1
 			path: Classes/Domain/Finishers/RateLimitFinisher.php
 
@@ -31,7 +25,7 @@ parameters:
 			path: Classes/RateLimiter/Storage/FileStorage.php
 
 		-
-			message: '#^Parameter \#1 \$variable_representation of function unserialize expects string, mixed given\.$#'
+			message: '#^Parameter \#1 \$data of function unserialize expects string, mixed given\.$#'
 			identifier: argument.type
 			count: 1
 			path: Classes/RateLimiter/Storage/FileStorage.php

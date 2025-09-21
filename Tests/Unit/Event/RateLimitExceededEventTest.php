@@ -13,14 +13,13 @@ namespace Brotkrueml\FormRateLimit\Tests\Unit\Event;
 
 use Brotkrueml\FormRateLimit\Domain\Dto\Options;
 use Brotkrueml\FormRateLimit\Event\RateLimitExceededEvent;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 
 final class RateLimitExceededEventTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function valuesFromGettersReturnedCorrectly(): void
     {
         $requestStub = $this->createStub(ServerRequestInterface::class);

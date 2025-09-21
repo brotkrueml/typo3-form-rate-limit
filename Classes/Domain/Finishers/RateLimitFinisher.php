@@ -26,12 +26,10 @@ use TYPO3\CMS\Form\Domain\Finishers\AbstractFinisher;
 
 final class RateLimitFinisher extends AbstractFinisher
 {
-    private FormRateLimitFactory $rateLimitFactory;
-    private EventDispatcherInterface $eventDispatcher;
-    private IntervalGuard $intervalGuard;
-    private LimitGuard $limitGuard;
-    private PolicyGuard $policyGuard;
-    private RestrictionsGuard $restrictionGuard;
+    private readonly IntervalGuard $intervalGuard;
+    private readonly LimitGuard $limitGuard;
+    private readonly PolicyGuard $policyGuard;
+    private readonly RestrictionsGuard $restrictionGuard;
 
     /**
      * @var array<string, string|int|string[]>
@@ -47,10 +45,10 @@ final class RateLimitFinisher extends AbstractFinisher
         'template' => 'EXT:form_rate_limit/Resources/Private/Templates/RateLimitExceeded.html',
     ];
 
-    public function __construct(FormRateLimitFactory $rateLimitFactory, EventDispatcherInterface $eventDispatcher)
-    {
-        $this->rateLimitFactory = $rateLimitFactory;
-        $this->eventDispatcher = $eventDispatcher;
+    public function __construct(
+        private readonly FormRateLimitFactory $rateLimitFactory,
+        private readonly EventDispatcherInterface $eventDispatcher
+    ) {
         $this->intervalGuard = new IntervalGuard();
         $this->limitGuard = new LimitGuard();
         $this->policyGuard = new PolicyGuard();

@@ -21,11 +21,9 @@ use Symfony\Component\RateLimiter\Storage\StorageInterface;
  */
 final class FormRateLimitFactory
 {
-    private StorageInterface $storage;
-
-    public function __construct(StorageInterface $storage)
-    {
-        $this->storage = $storage;
+    public function __construct(
+        private readonly StorageInterface $storage
+    ) {
     }
 
     public function createRateLimiter(Options $options, string $formIdentifier, string $ipAddress): LimiterInterface

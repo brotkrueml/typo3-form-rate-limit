@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\FormRateLimit\Tests\Unit\Domain\Dto;
 
 use Brotkrueml\FormRateLimit\Domain\Dto\CleanerCount;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class CleanerCountTest extends TestCase
@@ -23,9 +24,7 @@ final class CleanerCountTest extends TestCase
         $this->subject = new CleanerCount();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function propertiesInitialisedCorrectly(): void
     {
         self::assertSame(0, $this->subject->getTotal());
@@ -33,9 +32,7 @@ final class CleanerCountTest extends TestCase
         self::assertSame(0, $this->subject->getDeleted());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function incrementAndGetTotal(): void
     {
         $this->subject->incrementTotal();
@@ -46,9 +43,7 @@ final class CleanerCountTest extends TestCase
         self::assertSame(0, $this->subject->getDeleted());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function incrementAndGetErroneous(): void
     {
         $this->subject->incrementErroneous();
@@ -59,9 +54,7 @@ final class CleanerCountTest extends TestCase
         self::assertSame(0, $this->subject->getDeleted());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function incrementAndGetDeleted(): void
     {
         $this->subject->incrementDeleted();

@@ -12,6 +12,8 @@ declare(strict_types=1);
 namespace Brotkrueml\FormRateLimit\Tests\Unit\Guards\IntervalGuard;
 
 use Brotkrueml\FormRateLimit\Guards\LimitGuard;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class LimitGuardTest extends TestCase
@@ -23,11 +25,9 @@ final class LimitGuardTest extends TestCase
         $this->subject = new LimitGuard();
     }
 
-    /**
-     * @test
-     * @dataProvider providerForInvalidLimits
-     */
-    public function guardThrowsExceptionOnInvalidLimit($limit, string $expectedMessage, int $expectedCode): void
+    #[Test]
+    #[DataProvider('providerForInvalidLimits')]
+    public function guardThrowsExceptionOnInvalidLimit(string|int|array|null $limit, string $expectedMessage, int $expectedCode): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage($expectedMessage);
@@ -69,9 +69,7 @@ final class LimitGuardTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function guardReturnsGivenLimitWhenItIsAnInteger(): void
     {
         $actual = $this->subject->guard(42);
@@ -79,9 +77,7 @@ final class LimitGuardTest extends TestCase
         self::assertSame(42, $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function guardReturnsGivenLimitWhenItIsANumericString(): void
     {
         $actual = $this->subject->guard('42');

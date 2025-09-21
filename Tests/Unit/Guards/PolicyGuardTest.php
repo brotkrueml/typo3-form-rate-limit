@@ -12,6 +12,8 @@ declare(strict_types=1);
 namespace Brotkrueml\FormRateLimit\Tests\Unit\Guards\IntervalGuard;
 
 use Brotkrueml\FormRateLimit\Guards\PolicyGuard;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 final class PolicyGuardTest extends TestCase
@@ -23,11 +25,9 @@ final class PolicyGuardTest extends TestCase
         $this->subject = new PolicyGuard();
     }
 
-    /**
-     * @test
-     * @dataProvider providerForInvalidPolicies
-     */
-    public function guardThrowsExceptionOnInvalidPolicy($policy, string $expectedMessage, int $expectedCode): void
+    #[Test]
+    #[DataProvider('providerForInvalidPolicies')]
+    public function guardThrowsExceptionOnInvalidPolicy(int|string|array|null $policy, string $expectedMessage, int $expectedCode): void
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage($expectedMessage);
@@ -63,9 +63,7 @@ final class PolicyGuardTest extends TestCase
         ];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function guardReturnsGivenFixedWindowPolicy(): void
     {
         $actual = $this->subject->guard('fixed_window');
@@ -73,9 +71,7 @@ final class PolicyGuardTest extends TestCase
         self::assertSame('fixed_window', $actual);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function guardReturnsGivenSlidingWindowPolicy(): void
     {
         $actual = $this->subject->guard('sliding_window');

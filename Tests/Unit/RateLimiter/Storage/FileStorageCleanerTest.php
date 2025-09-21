@@ -12,11 +12,11 @@ declare(strict_types=1);
 namespace Brotkrueml\FormRateLimit\Tests\Unit\RateLimiter\Storage;
 
 use Brotkrueml\FormRateLimit\RateLimiter\Storage\FileStorageCleaner;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \Brotkrueml\FormRateLimit\RateLimiter\Storage\FileStorageCleaner
- */
+#[CoversClass(FileStorageCleaner::class)]
 final class FileStorageCleanerTest extends TestCase
 {
     private const STORAGE_PATH = '/tmp/form_rate_limit_test';
@@ -45,9 +45,7 @@ final class FileStorageCleanerTest extends TestCase
         \rmdir(self::STORAGE_PATH);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function noFilesAvailableReturnsCorrectCount(): void
     {
         $actual = $this->subject->cleanUp();
@@ -57,9 +55,7 @@ final class FileStorageCleanerTest extends TestCase
         self::assertSame(0, $actual->getErroneous());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function allFilesExpireInTheFuture(): void
     {
         $this->storeFileInStorage(\time() + 600);
@@ -73,9 +69,7 @@ final class FileStorageCleanerTest extends TestCase
         self::assertSame(0, $actual->getErroneous());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function withSomeFilesExpiryInThePast(): void
     {
         $this->storeFileInStorage(\time() - 10);
@@ -91,9 +85,7 @@ final class FileStorageCleanerTest extends TestCase
         self::assertSame(0, $actual->getErroneous());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function withSomeLegacyFilesExpiryInThePast(): void
     {
         $this->storeLegacyFileInStorage(\time() - 10);
@@ -109,9 +101,7 @@ final class FileStorageCleanerTest extends TestCase
         self::assertSame(0, $actual->getErroneous());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function withSomeErroneousFiles(): void
     {
         \file_put_contents(\tempnam(self::STORAGE_PATH, 'frl_'), 'some content');

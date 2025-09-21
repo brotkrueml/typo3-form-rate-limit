@@ -12,15 +12,14 @@ declare(strict_types=1);
 namespace Brotkrueml\FormRateLimit\Tests\Unit\EventListener;
 
 use Brotkrueml\FormRateLimit\EventListener\PreventLanguagePackDownload;
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Install\Service\Event\ModifyLanguagePacksEvent;
 
 final class PreventLanguagePackDownloadTest extends TestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function extensionIsRemoved(): void
     {
         if ((new Typo3Version())->getMajorVersion() < 12) {
