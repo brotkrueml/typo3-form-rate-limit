@@ -35,9 +35,3 @@ parameters:
 			identifier: symplify.forbiddenNode
 			count: 1
 			path: Classes/RateLimiter/Storage/FileStorageCleaner.php
-
-		-
-			message: '#^Cognitive complexity for "Brotkrueml\\FormRateLimit\\RateLimiter\\Storage\\FileStorageCleaner\:\:processFile\(\)" is 8, keep it under 6$#'
-			identifier: complexity.functionLike
-			count: 1
-			path: Classes/RateLimiter/Storage/FileStorageCleaner.php

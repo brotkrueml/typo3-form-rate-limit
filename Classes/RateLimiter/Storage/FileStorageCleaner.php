@@ -57,20 +57,11 @@ class FileStorageCleaner
             $this->count->incrementErroneous();
             return;
         }
-        try {
-            // Until version 1.3.0 the data was stored JSON-encoded
-            // For those legacy data we try to decode JSON.
-            // See also: https://github.com/brotkrueml/typo3-form-rate-limit/issues/5
-            // @todo Remove the json_decode fallback with version 2.0.0
-            /** @var array{state: string, expiry: int} $data */
-            $data = \json_decode($content, true, 512, \JSON_THROW_ON_ERROR);
-        } catch (\JsonException) {
-            // Here we have the new serialized data (hopefully)
-            $data = @\unserialize($content);
-            if (! \is_array($data)) {
-                $this->count->incrementErroneous();
-                return;
-            }
+
+        $data = @\unserialize($content);
+        if (! \is_array($data)) {
+            $this->count->incrementErroneous();
+            return;
         }
 
         if ($data['expiry'] >= \time()) {
