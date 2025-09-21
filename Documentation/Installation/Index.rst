@@ -9,8 +9,7 @@ Installation
 Target group: **Administrators**
 
 .. note::
-   The extension in version |version| supports TYPO3 v11 LTS, TYPO3 v12 LTS and
-   TYPO3 v13.
+   The extension in version |version| supports TYPO3 v13 LTS.
 
 The recommended way to install this extension is by using Composer. In your
 Composer-based TYPO3 project root, just type:

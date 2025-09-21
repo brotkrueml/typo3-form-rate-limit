@@ -2,7 +2,7 @@ includes:
     - phpstan.baseline.neon
 
 parameters:
-    phpVersion: 80100
+    phpVersion: 80200
     level: 9
     cognitive_complexity:
         class: 10

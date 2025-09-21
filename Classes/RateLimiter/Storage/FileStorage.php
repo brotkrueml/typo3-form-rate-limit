@@ -19,10 +19,10 @@ use Symfony\Component\RateLimiter\Storage\StorageInterface;
 /**
  * @internal
  */
-final class FileStorage implements StorageInterface
+final readonly class FileStorage implements StorageInterface
 {
     public function __construct(
-        private readonly string $storagePath,
+        private string $storagePath,
     ) {}
 
     public function save(LimiterStateInterface $limiterState): void

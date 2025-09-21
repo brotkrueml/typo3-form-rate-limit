@@ -20,22 +20,12 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - php-versions: 8.1
-            typo3-versions: ^12
-          - php-versions: 8.2
-            typo3-versions: ^12
           - php-versions: 8.2
             typo3-versions: ^13
           - php-versions: 8.3
-            typo3-versions: ^12
-          - php-versions: 8.3
             typo3-versions: ^13
           - php-versions: 8.4
-            typo3-versions: ^12
-          - php-versions: 8.4
             typo3-versions: ^13
-          - php-versions: 8.5
-            typo3-versions: ^12
           - php-versions: 8.5
             typo3-versions: ^13
     steps:
@@ -78,7 +68,7 @@ jobs:
       - name: Setup PHP version
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.1
+          php-version: 8.2
           coverage: pcov
           extensions: mbstring
       - name: Get Composer Cache Directory

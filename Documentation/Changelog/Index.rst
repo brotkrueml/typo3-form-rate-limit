@@ -16,6 +16,7 @@ Removed
 
 
 * Compatibility with TYPO3 v11
+* Compatibility with TYPO3 v12
 
 `1.7.1 <https://github.com/brotkrueml/typo3-form-rate-limit/compare/v1.7.1...v1.7.1>`_ - 2024-11-14
 -------------------------------------------------------------------------------------------------------

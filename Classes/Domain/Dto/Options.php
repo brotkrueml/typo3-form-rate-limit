@@ -14,16 +14,16 @@ namespace Brotkrueml\FormRateLimit\Domain\Dto;
 /**
  * @internal
  */
-final class Options
+final readonly class Options
 {
     /**
      * @param string[] $restrictions
      */
     public function __construct(
-        private readonly string $interval,
-        private readonly int $limit,
-        private readonly string $policy,
-        private readonly array $restrictions,
+        private string $interval,
+        private int $limit,
+        private string $policy,
+        private array $restrictions,
     ) {}
 
     public function getInterval(): string

@@ -14,12 +14,12 @@ namespace Brotkrueml\FormRateLimit\Event;
 use Brotkrueml\FormRateLimit\Domain\Dto\Options;
 use Psr\Http\Message\ServerRequestInterface;
 
-final class RateLimitExceededEvent
+final readonly class RateLimitExceededEvent
 {
     public function __construct(
-        private readonly string $formIdentifier,
-        private readonly Options $options,
-        private readonly ServerRequestInterface $request,
+        private string $formIdentifier,
+        private Options $options,
+        private ServerRequestInterface $request,
     ) {}
 
     public function getFormIdentifier(): string
