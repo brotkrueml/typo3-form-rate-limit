@@ -11,6 +11,12 @@ and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0
 `Unreleased <https://github.com/brotkrueml/typo3-form-rate-limit/compare/v1.7.1...HEAD>`_
 ---------------------------------------------------------------------------------------------
 
+Removed
+^^^^^^^
+
+
+* Compatibility with TYPO3 v11
+
 `1.7.1 <https://github.com/brotkrueml/typo3-form-rate-limit/compare/v1.7.1...v1.7.1>`_ - 2024-11-14
 -------------------------------------------------------------------------------------------------------
 
