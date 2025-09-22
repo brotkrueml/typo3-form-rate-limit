@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\FormRateLimit\Tests\Unit\RateLimiter\Storage;
 
 use Brotkrueml\FormRateLimit\RateLimiter\Storage\FileStorage;
-use Brotkrueml\FormRateLimit\Tests\Fixture\TestLimiter;
+use Brotkrueml\FormRateLimit\Tests\Unit\Fixtures\TestLimiter;
 use FilesystemIterator;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
