@@ -20,8 +20,8 @@ use Brotkrueml\FormRateLimit\Guards\RestrictionsGuard;
 use Brotkrueml\FormRateLimit\RateLimiter\FormRateLimitFactory;
 use Psr\EventDispatcher\EventDispatcherInterface;
 use TYPO3\CMS\Core\Http\NormalizedParams;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Fluid\View\StandaloneView;
+use TYPO3\CMS\Core\View\ViewFactoryData;
+use TYPO3\CMS\Core\View\ViewFactoryInterface;
 use TYPO3\CMS\Form\Domain\Finishers\AbstractFinisher;
 
 final class RateLimitFinisher extends AbstractFinisher
@@ -43,6 +43,7 @@ final class RateLimitFinisher extends AbstractFinisher
     public function __construct(
         private readonly FormRateLimitFactory $rateLimitFactory,
         private readonly EventDispatcherInterface $eventDispatcher,
+        private readonly ViewFactoryInterface $viewFactory,
         private readonly IntervalGuard $intervalGuard = new IntervalGuard(),
         private readonly LimitGuard $limitGuard = new LimitGuard(),
         private readonly PolicyGuard $policyGuard = new PolicyGuard(),
@@ -88,9 +89,11 @@ final class RateLimitFinisher extends AbstractFinisher
             return 'Rate limit exceeded!';
         }
 
-        /** @var StandaloneView $view */
-        $view = GeneralUtility::makeInstance(StandaloneView::class);
-        $view->setTemplatePathAndFilename($template);
+        $viewFactoryData = new ViewFactoryData(
+            templatePathAndFilename: $template,
+            request: $this->finisherContext->getRequest(),
+        );
+        $view = $this->viewFactory->create($viewFactoryData);
         $view->assignMultiple([
             'formIdentifier' => $this->finisherContext->getFormRuntime()->getIdentifier(),
             'interval' => $options->interval,

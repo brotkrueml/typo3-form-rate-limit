@@ -1,12 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: '#^Method Brotkrueml\\FormRateLimit\\Domain\\Finishers\\RateLimitFinisher\:\:renderExceededMessage\(\) should return string but returns mixed\.$#'
-			identifier: return.type
-			count: 1
-			path: Classes/Domain/Finishers/RateLimitFinisher.php
-
-		-
 			message: '#^"@\\DateInterval\:\:createFromDateString\(\$interval\)" is forbidden to use$#'
 			identifier: symplify.forbiddenNode
 			count: 1
