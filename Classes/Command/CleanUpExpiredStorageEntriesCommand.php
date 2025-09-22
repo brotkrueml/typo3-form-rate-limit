@@ -34,20 +34,26 @@ final class CleanUpExpiredStorageEntriesCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
-        $count = $this->fileStorageCleaner->cleanUp();
+        try {
+            $count = $this->fileStorageCleaner->cleanUp();
 
-        if ($count->getErroneous() > 0) {
-            $io->warning(\sprintf('%d files could not be deleted.', $count->getErroneous()));
+            if ($count->getErroneous() > 0) {
+                $io->warning(\sprintf('%d files could not be deleted.', $count->getErroneous()));
+            }
+
+            $io->success(
+                \sprintf(
+                    '%d expired files were deleted successfully, %d total files were available.',
+                    $count->getDeleted(),
+                    $count->getTotal(),
+                ),
+            );
+
+            return Command::SUCCESS;
+        } catch (\Throwable $t) {
+            $io->error('An error occurred: ' . $t->getMessage());
+
+            return Command::FAILURE;
         }
-
-        $io->success(
-            \sprintf(
-                '%d expired files were deleted successfully, %d total files were available.',
-                $count->getDeleted(),
-                $count->getTotal(),
-            ),
-        );
-
-        return Command::SUCCESS;
     }
 }

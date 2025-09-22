@@ -80,4 +80,17 @@ final class CleanUpExpiredStorageEntriesCommandTest extends TestCase
         self::assertStringContainsString('[OK] 2 expired files were deleted successfully, 3 total files were available.', $this->commandTester->getDisplay());
         self::assertSame(Command::SUCCESS, $this->commandTester->getStatusCode());
     }
+
+    #[Test]
+    public function exceptionIsCatchedCorrectly(): void
+    {
+        $this->fileStorageCleanerStub
+            ->method('cleanUp')
+            ->willThrowException(new \Exception('Some error', 42));
+
+        $this->commandTester->execute([]);
+
+        self::assertStringContainsString('[ERROR] An error occurred: Some error', $this->commandTester->getDisplay());
+        self::assertSame(Command::FAILURE, $this->commandTester->getStatusCode());
+    }
 }
