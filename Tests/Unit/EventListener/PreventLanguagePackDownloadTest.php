@@ -14,7 +14,6 @@ namespace Brotkrueml\FormRateLimit\Tests\Unit\EventListener;
 use Brotkrueml\FormRateLimit\EventListener\PreventLanguagePackDownload;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Install\Service\Event\ModifyLanguagePacksEvent;
 
 final class PreventLanguagePackDownloadTest extends TestCase
@@ -22,10 +21,6 @@ final class PreventLanguagePackDownloadTest extends TestCase
     #[Test]
     public function extensionIsRemoved(): void
     {
-        if ((new Typo3Version())->getMajorVersion() < 12) {
-            self::markTestSkipped('Event class is available only for TYPO3 v12+');
-        }
-
         $event = new ModifyLanguagePacksEvent([
             'form_rate_limit' => [],
         ]);
