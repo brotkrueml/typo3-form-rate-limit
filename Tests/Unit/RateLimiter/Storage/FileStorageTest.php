@@ -14,11 +14,13 @@ namespace Brotkrueml\FormRateLimit\Tests\Unit\RateLimiter\Storage;
 use Brotkrueml\FormRateLimit\RateLimiter\Storage\FileStorage;
 use Brotkrueml\FormRateLimit\Tests\Fixture\TestLimiter;
 use FilesystemIterator;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\RateLimiter\Policy\SlidingWindow;
 use Symfony\Component\RateLimiter\Policy\Window;
 
+#[CoversClass(FileStorage::class)]
 final class FileStorageTest extends TestCase
 {
     private const STORAGE_PATH = '/tmp/form_rate_limit_test';

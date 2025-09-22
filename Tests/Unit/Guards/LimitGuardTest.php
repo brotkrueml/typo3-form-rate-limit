@@ -12,10 +12,12 @@ declare(strict_types=1);
 namespace Brotkrueml\FormRateLimit\Tests\Unit\Guards\IntervalGuard;
 
 use Brotkrueml\FormRateLimit\Guards\LimitGuard;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(LimitGuard::class)]
 final class LimitGuardTest extends TestCase
 {
     private LimitGuard $subject;

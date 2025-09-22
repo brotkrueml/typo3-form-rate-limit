@@ -13,10 +13,12 @@ namespace Brotkrueml\FormRateLimit\Tests\Unit\Event;
 
 use Brotkrueml\FormRateLimit\Domain\Dto\Options;
 use Brotkrueml\FormRateLimit\Event\RateLimitExceededEvent;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ServerRequestInterface;
 
+#[CoversClass(RateLimitExceededEvent::class)]
 final class RateLimitExceededEventTest extends TestCase
 {
     #[Test]

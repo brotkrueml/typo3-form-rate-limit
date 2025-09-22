@@ -12,9 +12,11 @@ declare(strict_types=1);
 namespace Brotkrueml\FormRateLimit\Tests\Unit\Domain\Dto;
 
 use Brotkrueml\FormRateLimit\Domain\Dto\CleanerCount;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(CleanerCount::class)]
 final class CleanerCountTest extends TestCase
 {
     private CleanerCount $subject;

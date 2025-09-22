@@ -12,10 +12,12 @@ declare(strict_types=1);
 namespace Brotkrueml\FormRateLimit\Tests\Unit\EventListener;
 
 use Brotkrueml\FormRateLimit\EventListener\PreventLanguagePackDownload;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use TYPO3\CMS\Install\Service\Event\ModifyLanguagePacksEvent;
 
+#[CoversClass(PreventLanguagePackDownload::class)]
 final class PreventLanguagePackDownloadTest extends TestCase
 {
     #[Test]
