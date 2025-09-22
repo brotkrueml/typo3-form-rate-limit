@@ -16,15 +16,12 @@ use Brotkrueml\FormRateLimit\Domain\Dto\CleanerCount;
 /**
  * @internal
  */
-class FileStorageCleaner
+readonly class FileStorageCleaner
 {
-    private readonly CleanerCount $count;
-
     public function __construct(
-        private readonly string $storagePath,
-    ) {
-        $this->count = new CleanerCount();
-    }
+        private string $storagePath,
+        private CleanerCount $count = new CleanerCount(),
+    ) {}
 
     public function cleanUp(): CleanerCount
     {
