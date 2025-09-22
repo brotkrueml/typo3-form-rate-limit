@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Brotkrueml\FormRateLimit\Tests\Unit\RateLimiter\Storage;
 
 use Brotkrueml\FormRateLimit\RateLimiter\Storage\FileStorageCleaner;
+use Brotkrueml\FormRateLimit\RateLimiter\Storage\FileStorageException;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
@@ -98,6 +99,16 @@ final class FileStorageCleanerTest extends TestCase
         self::assertSame(4, $actual->getTotal());
         self::assertSame(0, $actual->getDeleted());
         self::assertSame(2, $actual->getErroneous());
+    }
+
+    #[Test]
+    public function cleanUpThrowsExceptionOnInvalidStoragePath(): void
+    {
+        $this->expectException(FileStorageException::class);
+        $this->expectExceptionCode(1758533582);
+
+        \rmdir(self::STORAGE_PATH);
+        $this->subject->cleanUp();
     }
 
     private function storeFileInStorage(int $expiry): void

@@ -26,7 +26,7 @@ readonly class FileStorageCleaner
     public function cleanUp(): CleanerCount
     {
         if (! \is_dir($this->storagePath)) {
-            return $this->count;
+            throw FileStorageException::fromInvalidStoragePath($this->storagePath);
         }
 
         $it = new \FilesystemIterator($this->storagePath);
