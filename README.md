@@ -1,6 +1,6 @@
 # TYPO3 extension: Form Rate Limit
 
-[![CI Status](https://github.com/brotkrueml/typo3-form-rate-limit/workflows/CI/badge.svg?branch=main)](https://github.com/brotkrueml/typo3-form-rate-limit/actions?query=workflow%3ACI)
+[![CI](https://github.com/brotkrueml/typo3-form-rate-limit/actions/workflows/ci.yml/badge.svg)](https://github.com/brotkrueml/typo3-form-rate-limit/actions/workflows/ci.yml)
 [![Latest Stable Version](https://img.shields.io/packagist/v/brotkrueml/typo3-form-rate-limit.svg?label=stable)](https://packagist.org/packages/brotkrueml/typo3-form-rate-limit)
 
 TYPO3 form finisher for rate limiting when sending a form
