@@ -10,7 +10,7 @@ TYPO3 form finisher for rate limiting when sending a form
 
 | Latest release | TYPO3              | PHP   | Updates will contain                           |
 |----------------|--------------------|-------|------------------------------------------------|
-| 2.x            | 13.4               | ≥ 8.2 | (in development)                               |
+| 2.x            | 13.4               | ≥ 8.2 | Features, bug and security fixes               |
 | 1.x            | 11.5 / 12.4 / 13.4 | ≥ 7.4 | Bug and security fixes (EOL expected Apr 2026) |
 
 [Documentation](https://docs.typo3.org/p/brotkrueml/typo3-form-rate-limit/main/en-us/) |
