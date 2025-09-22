@@ -31,7 +31,8 @@
         "symfony/yaml": "^7.3",
         "symplify/phpstan-rules": "^14.7",
         "tomasvotruba/cognitive-complexity": "^1.0",
-        "typo3/cms-install": "^13.4"
+        "typo3/cms-install": "^13.4",
+        "typo3/testing-framework": "^9.2"
     },
     "autoload": {
         "psr-4": {
