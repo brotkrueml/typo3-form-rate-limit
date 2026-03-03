@@ -11,6 +11,7 @@
         project-issues="https://github.com/brotkrueml/typo3-form-rate-limit/issues"
         edit-on-github-branch="main"
         edit-on-github="brotkrueml/typo3-form-rate-limit"
+        interlink-shortcode="brotkrueml/typo3-form-rate-limit"
         typo3-core-preferred="stable"
     />
     <project
