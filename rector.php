@@ -5,7 +5,6 @@ declare(strict_types=1);
 use Rector\Config\RectorConfig;
 use Rector\DeadCode\Rector\If_\UnwrapFutureCompatibleIfPhpVersionRector;
 use Rector\PHPUnit\CodeQuality\Rector\Class_\PreferPHPUnitThisCallRector;
-use Rector\PHPUnit\CodeQuality\Rector\Class_\RemoveDataProviderParamKeysRector;
 use Rector\PHPUnit\CodeQuality\Rector\ClassMethod\ReplaceTestAnnotationWithPrefixedFunctionRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\TypeDeclaration\Rector\FunctionLike\AddReturnTypeDeclarationFromYieldsRector;
@@ -39,7 +38,6 @@ return RectorConfig::configure()
             __DIR__ . '/Tests',
         ],
         PreferPHPUnitThisCallRector::class,
-        RemoveDataProviderParamKeysRector::class,
         ReplaceTestAnnotationWithPrefixedFunctionRector::class,
         UnwrapFutureCompatibleIfPhpVersionRector::class,
     ]);
