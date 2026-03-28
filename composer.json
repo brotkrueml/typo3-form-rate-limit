@@ -26,7 +26,7 @@
         "ergebnis/composer-normalize": "~2.50.0",
         "phpstan/extension-installer": "^1.4",
         "phpstan/phpstan": "2.1.44",
-        "phpunit/phpunit": "^11.5 || ^12.5",
+        "phpunit/phpunit": "^11.5 || ^12.5 || ^13.0",
         "rector/rector": "2.3.9",
         "symfony/yaml": "^7.4",
         "symplify/phpstan-rules": "^14.9",
