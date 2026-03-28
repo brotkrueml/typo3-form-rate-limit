@@ -17,7 +17,7 @@ namespace Brotkrueml\FormRateLimit\Guards;
 final readonly class LimitGuard
 {
     /**
-     * @param string|int|array{}|null $limit
+     * @param string|bool|int|array{}|null $limit
      */
     public function guard($limit): int
     {

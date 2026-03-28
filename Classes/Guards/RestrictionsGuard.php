@@ -17,7 +17,7 @@ namespace Brotkrueml\FormRateLimit\Guards;
 final readonly class RestrictionsGuard
 {
     /**
-     * @param string|int|array<int,string>|null $restrictions
+     * @param string|bool|int|array<int,string>|null $restrictions
      * @return list<string>
      */
     public function guard($restrictions): array

@@ -19,7 +19,7 @@ final readonly class PolicyGuard
     private const ALLOWED_POLICIES = ['fixed_window', 'sliding_window'];
 
     /**
-     * @param string|int|array{}|null $policy
+     * @param string|bool|int|array{}|null $policy
      */
     public function guard($policy): string
     {
