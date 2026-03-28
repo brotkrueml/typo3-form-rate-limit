@@ -9,7 +9,7 @@ declare(strict_types=1);
  * LICENSE.txt file that was distributed with this source code.
  */
 
-namespace Brotkrueml\FormRateLimit\Tests\Unit\Guards\IntervalGuard;
+namespace Brotkrueml\FormRateLimit\Tests\Unit\Guards;
 
 use Brotkrueml\FormRateLimit\Guards\LimitGuard;
 use PHPUnit\Framework\Attributes\CoversClass;
