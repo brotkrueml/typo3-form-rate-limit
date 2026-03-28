@@ -38,7 +38,7 @@ final class FileStorageTest extends TestCase
             return;
         }
 
-        \array_map('unlink', \glob(self::STORAGE_PATH . '/*'));
+        \array_map(unlink(...), \glob(self::STORAGE_PATH . '/*'));
         \rmdir(self::STORAGE_PATH);
     }
 

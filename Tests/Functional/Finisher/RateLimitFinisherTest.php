@@ -42,7 +42,7 @@ final class RateLimitFinisherTest extends FunctionalTestCase
         $subject = $this->get(RateLimitFinisher::class);
 
         $actual = $subject->execute(
-            new FinisherContext($this->createMock(FormRuntime::class), $this->getRequestStub('127.0.0.1')),
+            new FinisherContext(self::createStub(FormRuntime::class), $this->getRequestStub('127.0.0.1')),
         );
 
         self::assertNull($actual);
@@ -57,12 +57,12 @@ final class RateLimitFinisherTest extends FunctionalTestCase
         $subject->setOption('limit', 1);
 
         $actual = $subject->execute(
-            new FinisherContext($this->createMock(FormRuntime::class), $this->getRequestStub('127.0.0.2')),
+            new FinisherContext(self::createStub(FormRuntime::class), $this->getRequestStub('127.0.0.2')),
         );
         self::assertNull($actual);
 
         $actual = $subject->execute(
-            new FinisherContext($this->createMock(FormRuntime::class), $this->getRequestStub('127.0.0.2')),
+            new FinisherContext(self::createStub(FormRuntime::class), $this->getRequestStub('127.0.0.2')),
         );
         self::assertStringContainsString('The rate limit has been exceeded.', (string) $actual);
     }
@@ -76,17 +76,17 @@ final class RateLimitFinisherTest extends FunctionalTestCase
         $subject->setOption('limit', 2);
 
         $actual = $subject->execute(
-            new FinisherContext($this->createMock(FormRuntime::class), $this->getRequestStub('127.0.0.3')),
+            new FinisherContext(self::createStub(FormRuntime::class), $this->getRequestStub('127.0.0.3')),
         );
         self::assertNull($actual);
 
         $actual = $subject->execute(
-            new FinisherContext($this->createMock(FormRuntime::class), $this->getRequestStub('127.0.0.3')),
+            new FinisherContext(self::createStub(FormRuntime::class), $this->getRequestStub('127.0.0.3')),
         );
         self::assertNull($actual);
 
         $actual = $subject->execute(
-            new FinisherContext($this->createMock(FormRuntime::class), $this->getRequestStub('127.0.0.3')),
+            new FinisherContext(self::createStub(FormRuntime::class), $this->getRequestStub('127.0.0.3')),
         );
         self::assertStringContainsString('The rate limit has been exceeded.', (string) $actual);
     }
@@ -103,11 +103,11 @@ final class RateLimitFinisherTest extends FunctionalTestCase
         ]);
 
         $actual = $subject->execute(
-            new FinisherContext($this->createMock(FormRuntime::class), $this->getRequestStub('127.0.0.4')),
+            new FinisherContext(self::createStub(FormRuntime::class), $this->getRequestStub('127.0.0.4')),
         );
         \sleep(1);
         $actual = $subject->execute(
-            new FinisherContext($this->createMock(FormRuntime::class), $this->getRequestStub('127.0.0.4')),
+            new FinisherContext(self::createStub(FormRuntime::class), $this->getRequestStub('127.0.0.4')),
         );
 
         self::assertNull($actual);
@@ -125,10 +125,10 @@ final class RateLimitFinisherTest extends FunctionalTestCase
         ]);
 
         $actual = $subject->execute(
-            new FinisherContext($this->createMock(FormRuntime::class), $this->getRequestStub('127.0.0.5')),
+            new FinisherContext(self::createStub(FormRuntime::class), $this->getRequestStub('127.0.0.5')),
         );
         $actual = $actual = $subject->execute(
-            new FinisherContext($this->createMock(FormRuntime::class), $this->getRequestStub('127.0.0.5')),
+            new FinisherContext(self::createStub(FormRuntime::class), $this->getRequestStub('127.0.0.5')),
         );
 
         self::assertStringContainsString('Custom template for exceeded rate limit', (string) $actual);
