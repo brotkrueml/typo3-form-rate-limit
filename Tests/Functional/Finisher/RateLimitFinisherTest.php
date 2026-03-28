@@ -37,7 +37,7 @@ final class RateLimitFinisherTest extends FunctionalTestCase
     #[Test]
     public function onFirstExecutionSubmittingTheFormSubmissionSucceeds(): void
     {
-        $this->mockTranslationService();
+        $this->stubTranslationService();
         /** @var RateLimitFinisher $subject */
         $subject = $this->get(RateLimitFinisher::class);
 
@@ -51,7 +51,7 @@ final class RateLimitFinisherTest extends FunctionalTestCase
     #[Test]
     public function onSecondExecutionSubmittingTheFormReturnsAnErrorIfLimitItSetTo1(): void
     {
-        $this->mockTranslationService();
+        $this->stubTranslationService();
         /** @var RateLimitFinisher $subject */
         $subject = $this->get(RateLimitFinisher::class);
         $subject->setOption('limit', 1);
@@ -70,7 +70,7 @@ final class RateLimitFinisherTest extends FunctionalTestCase
     #[Test]
     public function onThirdExecutionSubmittingTheFormReturnsAnErrorIfLimitItSetTo2(): void
     {
-        $this->mockTranslationService();
+        $this->stubTranslationService();
         /** @var RateLimitFinisher $subject */
         $subject = $this->get(RateLimitFinisher::class);
         $subject->setOption('limit', 2);
@@ -94,7 +94,7 @@ final class RateLimitFinisherTest extends FunctionalTestCase
     #[Test]
     public function onConsecutiveExecutionOutsideTheGivenIntervalTheFormSubmissionSucceeds(): void
     {
-        $this->mockTranslationService();
+        $this->stubTranslationService();
         /** @var RateLimitFinisher $subject */
         $subject = $this->get(RateLimitFinisher::class);
         $subject->setOptions([
@@ -116,7 +116,7 @@ final class RateLimitFinisherTest extends FunctionalTestCase
     #[Test]
     public function passingACustomTemplateIsUsedOnErrorIfGiven(): void
     {
-        $this->mockTranslationService();
+        $this->stubTranslationService();
         /** @var RateLimitFinisher $subject */
         $subject = $this->get(RateLimitFinisher::class);
         $subject->setOptions([
@@ -124,10 +124,10 @@ final class RateLimitFinisherTest extends FunctionalTestCase
             'template' => 'EXT:form_rate_limit/Tests/Functional/Fixtures/RateLimitExceeded.html',
         ]);
 
-        $actual = $subject->execute(
+        $subject->execute(
             new FinisherContext(self::createStub(FormRuntime::class), $this->getRequestStub('127.0.0.5')),
         );
-        $actual = $actual = $subject->execute(
+        $actual = $subject->execute(
             new FinisherContext(self::createStub(FormRuntime::class), $this->getRequestStub('127.0.0.5')),
         );
 
@@ -148,21 +148,22 @@ final class RateLimitFinisherTest extends FunctionalTestCase
         $requestStub = self::createStub(Request::class);
         $requestStub
             ->method('getAttribute')
-            ->with('normalizedParams')
-            ->willReturn($normalizesParams);
+            ->willReturnMap([
+                ['normalizedParams', $normalizesParams],
+            ]);
 
         return $requestStub;
     }
 
-    private function mockTranslationService(): void
+    private function stubTranslationService(): void
     {
         /** @var Container $container */
         $container = $this->get('service_container');
 
         // Define a TranslationService mock which skips all the translation but simply returns the $optionValue
         // without any further processing.
-        $translationServiceMock = $this->createMock(TranslationService::class);
-        $translationServiceMock->method('translateFinisherOption')->willReturnCallback(static fn(): string => \func_get_arg(3));
-        $container->set(TranslationService::class, $translationServiceMock);
+        $translationServiceStub = self::createStub(TranslationService::class);
+        $translationServiceStub->method('translateFinisherOption')->willReturnCallback(static fn(): string => \func_get_arg(3));
+        $container->set(TranslationService::class, $translationServiceStub);
     }
 }
