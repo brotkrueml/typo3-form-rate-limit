@@ -3,6 +3,7 @@
     "description": "TYPO3 form finisher for rate limiting when sending a form",
     "license": "GPL-2.0-or-later",
     "type": "typo3-cms-extension",
+    "version": "2.1.0-dev",
     "authors": [
         {
             "name": "Chris Müller",
@@ -60,6 +61,11 @@
             "dev-main": "2.1.x-dev"
         },
         "typo3/cms": {
+            "Package": {
+                "providesPackages": {
+                    "symfony/rate-limiter": ""
+                }
+            },
             "extension-key": "form_rate_limit",
             "web-dir": ".Build/web"
         }
