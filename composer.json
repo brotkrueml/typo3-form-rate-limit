@@ -3,7 +3,7 @@
     "description": "TYPO3 form finisher for rate limiting when sending a form",
     "license": "GPL-2.0-or-later",
     "type": "typo3-cms-extension",
-    "version": "2.1.0-dev",
+    "version": "2.1.0",
     "authors": [
         {
             "name": "Chris Müller",
