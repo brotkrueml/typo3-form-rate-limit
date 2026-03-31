@@ -16,10 +16,7 @@ namespace Brotkrueml\FormRateLimit\Guards;
  */
 final readonly class LimitGuard
 {
-    /**
-     * @param string|bool|int|array{}|null $limit
-     */
-    public function guard($limit): int
+    public function guard(mixed $limit): int
     {
         if ($limit === null) {
             throw new \InvalidArgumentException('Limit must be set!', 1671449026);

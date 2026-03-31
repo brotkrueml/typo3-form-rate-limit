@@ -63,7 +63,7 @@ final class RestrictionsGuardTest extends TestCase
                 '__formIdentifier',
                 42,
             ],
-            'expectedMessage' => 'A single restrictions must be a string!',
+            'expectedMessage' => 'A single restriction must be a string!',
             'expectedCode' => 1671727530,
         ];
     }

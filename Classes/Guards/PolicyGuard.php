@@ -18,10 +18,7 @@ final readonly class PolicyGuard
 {
     private const ALLOWED_POLICIES = ['fixed_window', 'sliding_window'];
 
-    /**
-     * @param string|bool|int|array{}|null $policy
-     */
-    public function guard($policy): string
+    public function guard(mixed $policy): string
     {
         if ($policy === null) {
             throw new \InvalidArgumentException('Policy must be set!', 1671448320);

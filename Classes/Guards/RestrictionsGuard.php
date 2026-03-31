@@ -17,10 +17,9 @@ namespace Brotkrueml\FormRateLimit\Guards;
 final readonly class RestrictionsGuard
 {
     /**
-     * @param string|bool|int|array<int,string>|null $restrictions
-     * @return list<string>
+     * @return non-empty-list<string>
      */
-    public function guard($restrictions): array
+    public function guard(mixed $restrictions): array
     {
         if ($restrictions === null) {
             throw new \InvalidArgumentException('Restrictions must be set!', 1671727527);
@@ -36,7 +35,7 @@ final readonly class RestrictionsGuard
 
         foreach ($restrictions as $restriction) {
             if (! \is_string($restriction)) {
-                throw new \InvalidArgumentException('A single restrictions must be a string!', 1671727530);
+                throw new \InvalidArgumentException('A single restriction must be a string!', 1671727530);
             }
         }
 

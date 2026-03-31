@@ -16,10 +16,7 @@ namespace Brotkrueml\FormRateLimit\Guards;
  */
 final readonly class IntervalGuard
 {
-    /**
-     * @param string|bool|int|array{}|null $interval
-     */
-    public function guard($interval): string
+    public function guard(mixed $interval): string
     {
         if ($interval === null) {
             throw new \InvalidArgumentException('Interval must be set!', 1671448702);

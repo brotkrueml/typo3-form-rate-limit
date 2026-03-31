@@ -7,8 +7,8 @@ parameters:
 			path: Classes/Guards/IntervalGuard.php
 
 		-
-			message: '#^Call to function is_string\(\) with string will always evaluate to true\.$#'
-			identifier: function.alreadyNarrowedType
+			message: '#^Method Brotkrueml\\FormRateLimit\\Guards\\RestrictionsGuard\:\:guard\(\) should return non\-empty\-list\<string\> but returns non\-empty\-list\<mixed\>\.$#'
+			identifier: return.type
 			count: 1
 			path: Classes/Guards/RestrictionsGuard.php
 
