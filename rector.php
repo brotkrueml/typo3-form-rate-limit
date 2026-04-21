@@ -7,7 +7,7 @@ use Rector\DeadCode\Rector\If_\UnwrapFutureCompatibleIfPhpVersionRector;
 use Rector\PHPUnit\CodeQuality\Rector\Class_\PreferPHPUnitThisCallRector;
 use Rector\PHPUnit\CodeQuality\Rector\ClassMethod\ReplaceTestAnnotationWithPrefixedFunctionRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
-use Rector\TypeDeclaration\Rector\FunctionLike\AddReturnTypeDeclarationFromYieldsRector;
+use Rector\TypeDeclaration\Rector\StmtsAwareInterface\SafeDeclareStrictTypesRector;
 
 return RectorConfig::configure()
     ->withPaths([
@@ -34,10 +34,10 @@ return RectorConfig::configure()
     ])
     ->withRootFiles()
     ->withSkip([
-        AddReturnTypeDeclarationFromYieldsRector::class => [
-            __DIR__ . '/Tests',
-        ],
         PreferPHPUnitThisCallRector::class,
         ReplaceTestAnnotationWithPrefixedFunctionRector::class,
+        SafeDeclareStrictTypesRector::class => [
+            __DIR__ . '/ext_emconf.php',
+        ],
         UnwrapFutureCompatibleIfPhpVersionRector::class,
     ]);
