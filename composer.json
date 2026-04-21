@@ -64,7 +64,7 @@
                 "providesPackages": {}
             },
             "extension-key": "form_rate_limit",
-            "version": "2.1.2-dev",
+            "version": "2.1.2",
             "web-dir": ".Build/web"
         }
     }

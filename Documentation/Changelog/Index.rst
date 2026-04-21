@@ -8,8 +8,17 @@ All notable changes to this project will be documented in this file.
 The format is based on `Keep a Changelog <https://keepachangelog.com/en/1.0.0/>`_\ ,
 and this project adheres to `Semantic Versioning <https://semver.org/spec/v2.0.0.html>`_.
 
-`Unreleased <https://github.com/brotkrueml/typo3-form-rate-limit/compare/v2.1.1...HEAD>`_
+`Unreleased <https://github.com/brotkrueml/typo3-form-rate-limit/compare/v2.1.2...HEAD>`_
 ---------------------------------------------------------------------------------------------
+
+`2.1.2 <https://github.com/brotkrueml/typo3-form-rate-limit/compare/v2.1.1...v2.1.2>`_ - 2026-04-21
+-------------------------------------------------------------------------------------------------------
+
+Fixed
+^^^^^
+
+
+* Avoid configuring symfony/rate-limiter in extra.typo3/cms.Package.providesPackages for TYPO3 v14
 
 `2.1.1 <https://github.com/brotkrueml/typo3-form-rate-limit/compare/v2.1.0...v2.1.1>`_ - 2026-03-31
 -------------------------------------------------------------------------------------------------------

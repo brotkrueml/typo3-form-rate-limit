@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.2] - 2026-04-21
+
+### Fixed
+- Avoid configuring symfony/rate-limiter in extra.typo3/cms.Package.providesPackages for TYPO3 v14
+
 ## [2.1.1] - 2026-03-31
 
 ### Fixed
@@ -76,7 +81,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 Initial release
 
-[Unreleased]: https://github.com/brotkrueml/typo3-form-rate-limit/compare/v2.1.1...HEAD
+[Unreleased]: https://github.com/brotkrueml/typo3-form-rate-limit/compare/v2.1.2...HEAD
+[2.1.2]: https://github.com/brotkrueml/typo3-form-rate-limit/compare/v2.1.1...v2.1.2
 [2.1.1]: https://github.com/brotkrueml/typo3-form-rate-limit/compare/v2.1.0...v2.1.1
 [2.1.0]: https://github.com/brotkrueml/typo3-form-rate-limit/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/brotkrueml/typo3-form-rate-limit/compare/v1.7.1...v2.0.0
