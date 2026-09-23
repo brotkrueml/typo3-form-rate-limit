@@ -38,6 +38,10 @@ jobs:
             typo3-versions: 13
           - php-versions: 8.5
             typo3-versions: 14
+          - php-versions: 8.6
+            typo3-versions: 13
+          - php-versions: 8.6
+            typo3-versions: 14
     env:
       PHP_VERSION: ${{ matrix.php-versions }}
       TYPO3_VERSION: ${{ matrix.typo3-versions }}
@@ -64,7 +68,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
       - name: Install composer dependencies
         run: |
-          composer remove symplify/phpstan-rules tomasvotruba/cognitive-complexity --dev --no-update
+          composer remove ergebnis/composer-normalize symplify/phpstan-rules tomasvotruba/cognitive-complexity --dev --no-update
           composer require typo3/cms-core="^${TYPO3_VERSION}" --no-progress --prefer-dist --optimize-autoloader
       - name: Run PHP linter
         run: |
