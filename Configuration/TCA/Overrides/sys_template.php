@@ -12,5 +12,5 @@ defined('TYPO3') || die();
 TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
     Brotkrueml\FormRateLimit\Extension::KEY,
     'Configuration/TypoScript',
-    'Form Rate Limit'
+    'Form Rate Limit',
 );

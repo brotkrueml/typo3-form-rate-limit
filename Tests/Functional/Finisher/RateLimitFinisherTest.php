@@ -163,7 +163,8 @@ final class RateLimitFinisherTest extends FunctionalTestCase
         // Define a TranslationService mock which skips all the translation but simply returns the $optionValue
         // without any further processing.
         $translationServiceStub = self::createStub(TranslationService::class);
-        $translationServiceStub->method('translateFinisherOption')->willReturnCallback(static fn(): string => \func_get_arg(3));
+        $translationServiceStub->method('translateFinisherOption')
+            ->willReturnCallback(static fn(): string => \func_get_arg(3));
         $container->set(TranslationService::class, $translationServiceStub);
     }
 }

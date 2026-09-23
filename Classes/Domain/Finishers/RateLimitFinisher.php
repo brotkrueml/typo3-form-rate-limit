@@ -60,16 +60,19 @@ final class RateLimitFinisher extends AbstractFinisher
         );
 
         /** @var NormalizedParams $normalizedParams */
-        $normalizedParams = $this->finisherContext->getRequest()->getAttribute('normalizedParams');
+        $normalizedParams = $this->finisherContext->getRequest()
+            ->getAttribute('normalizedParams');
         $limiter = $this->rateLimitFactory->createRateLimiter(
             $options,
-            $this->finisherContext->getFormRuntime()->getIdentifier(),
+            $this->finisherContext->getFormRuntime()
+                ->getIdentifier(),
             $normalizedParams->getRemoteAddress(),
         );
         if (! $limiter->consume()->isAccepted()) {
             $this->eventDispatcher->dispatch(
                 new RateLimitExceededEvent(
-                    $this->finisherContext->getFormRuntime()->getIdentifier(),
+                    $this->finisherContext->getFormRuntime()
+                        ->getIdentifier(),
                     $options,
                     $this->finisherContext->getRequest(),
                 ),
@@ -95,7 +98,8 @@ final class RateLimitFinisher extends AbstractFinisher
         );
         $view = $this->viewFactory->create($viewFactoryData);
         $view->assignMultiple([
-            'formIdentifier' => $this->finisherContext->getFormRuntime()->getIdentifier(),
+            'formIdentifier' => $this->finisherContext->getFormRuntime()
+                ->getIdentifier(),
             'interval' => $options->interval,
             'limit' => $options->limit,
             'policy' => $options->policy,
