@@ -1,5 +1,7 @@
 name: CI
 
+permissions: {}
+
 on:
   push:
     paths:
@@ -21,37 +23,41 @@ jobs:
       matrix:
         include:
           - php-versions: 8.2
-            typo3-versions: ^13
+            typo3-versions: 13
           - php-versions: 8.2
-            typo3-versions: ^14
+            typo3-versions: 14
           - php-versions: 8.3
-            typo3-versions: ^13
+            typo3-versions: 13
           - php-versions: 8.3
-            typo3-versions: ^14
+            typo3-versions: 14
           - php-versions: 8.4
-            typo3-versions: ^13
+            typo3-versions: 13
           - php-versions: 8.4
-            typo3-versions: ^14
+            typo3-versions: 14
           - php-versions: 8.5
-            typo3-versions: ^13
+            typo3-versions: 13
           - php-versions: 8.5
-            typo3-versions: ^14
+            typo3-versions: 14
+    env:
+      PHP_VERSION: ${{ matrix.php-versions }}
+      TYPO3_VERSION: ${{ matrix.typo3-versions }}
     steps:
       - name: Check out repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 1
+          persist-credentials: false
       - name: Setup PHP version
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 #v2.37.2
         with:
-          php-version: ${{ matrix.php-versions }}
+          php-version: ${{ env.PHP_VERSION }}
           extensions: mbstring
       - name: Get Composer Cache Directory
         id: composer-cache
         run: |
           echo "::set-output name=dir::$(composer config cache-files-dir)"
       - name: Cache composer dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
@@ -59,7 +65,7 @@ jobs:
       - name: Install composer dependencies
         run: |
           composer remove symplify/phpstan-rules tomasvotruba/cognitive-complexity --dev --no-update
-          composer require typo3/cms-core=${{ matrix.typo3-versions }} --no-progress --prefer-dist --optimize-autoloader
+          composer require typo3/cms-core="^${TYPO3_VERSION}" --no-progress --prefer-dist --optimize-autoloader
       - name: Run PHP linter
         run: |
           find . -type f -name '*.php' ! -path "./.Build/*" -print0 | xargs -0 -n1 -P4 php -l -n | (! grep -v "No syntax errors detected" )
@@ -71,11 +77,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 1
+          persist-credentials: false
       - name: Setup PHP version
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 #v2.37.2
         with:
           php-version: 8.5
           coverage: pcov
@@ -85,7 +92,7 @@ jobs:
         run: |
           echo "::set-output name=dir::$(composer config cache-files-dir)"
       - name: Cache composer dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
@@ -108,6 +115,6 @@ jobs:
       - name: Run tests and collect coverage
         run: .Build/bin/phpunit --configuration Tests/phpunit.xml.dist --coverage-clover coverage.xml
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@fb8b3582c8e4def4969c97caa2f19720cb33a72f # v7.0.0
         with:
           token: ${{ secrets.CODECOV_TOKEN }}

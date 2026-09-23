@@ -1,5 +1,7 @@
 name: Documentation
 
+permissions: {}
+
 on:
   push:
     paths:
@@ -13,8 +15,11 @@ jobs:
     name: Rendering
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v5
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 1
+          persist-credentials: false
 
       - name: Documentation renders without warnings
         run: |
