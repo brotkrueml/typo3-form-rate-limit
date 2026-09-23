@@ -59,7 +59,7 @@ jobs:
       - name: Get Composer Cache Directory
         id: composer-cache
         run: |
-          echo "::set-output name=dir::$(composer config cache-files-dir)"
+          echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
       - name: Cache composer dependencies
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
@@ -94,7 +94,7 @@ jobs:
       - name: Get Composer Cache Directory
         id: composer-cache
         run: |
-          echo "::set-output name=dir::$(composer config cache-files-dir)"
+          echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
       - name: Cache composer dependencies
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
