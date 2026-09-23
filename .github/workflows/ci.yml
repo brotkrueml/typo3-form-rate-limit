@@ -58,6 +58,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
       - name: Install composer dependencies
         run: |
+          composer remove symplify/phpstan-rules tomasvotruba/cognitive-complexity --dev --no-update
           composer require typo3/cms-core=${{ matrix.typo3-versions }} --no-progress --prefer-dist --optimize-autoloader
       - name: Run PHP linter
         run: |
@@ -76,7 +77,7 @@ jobs:
       - name: Setup PHP version
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.2
+          php-version: 8.5
           coverage: pcov
           extensions: mbstring
       - name: Get Composer Cache Directory

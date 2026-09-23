@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
 use Rector\DeadCode\Rector\If_\UnwrapFutureCompatibleIfPhpVersionRector;
-use Rector\PHPUnit\CodeQuality\Rector\Class_\PreferPHPUnitThisCallRector;
-use Rector\PHPUnit\CodeQuality\Rector\ClassMethod\ReplaceTestAnnotationWithPrefixedFunctionRector;
-use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\TypeDeclaration\Rector\StmtsAwareInterface\SafeDeclareStrictTypesRector;
 
 return RectorConfig::configure()
@@ -28,14 +25,11 @@ return RectorConfig::configure()
         typeDeclarations: true,
         earlyReturn: true,
     )
-    ->withSets([
-        PHPUnitSetList::PHPUNIT_CODE_QUALITY,
-        PHPUnitSetList::PHPUNIT_100,
-    ])
+    ->withComposerBased(
+        phpunit: true,
+    )
     ->withRootFiles()
     ->withSkip([
-        PreferPHPUnitThisCallRector::class,
-        ReplaceTestAnnotationWithPrefixedFunctionRector::class,
         SafeDeclareStrictTypesRector::class => [
             __DIR__ . '/ext_emconf.php',
         ],

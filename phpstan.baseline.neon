@@ -7,12 +7,6 @@ parameters:
 			path: Classes/Guards/IntervalGuard.php
 
 		-
-			message: '#^Method Brotkrueml\\FormRateLimit\\Guards\\RestrictionsGuard\:\:guard\(\) should return non\-empty\-list\<string\> but returns non\-empty\-list\<mixed\>\.$#'
-			identifier: return.type
-			count: 1
-			path: Classes/Guards/RestrictionsGuard.php
-
-		-
 			message: '#^"@\\unserialize\(\$content\)" is forbidden to use$#'
 			identifier: symplify.forbiddenNode
 			count: 1
